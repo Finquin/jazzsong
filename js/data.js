@@ -109,7 +109,7 @@ const jazzguitaristas = [
 		discography: [
 			{
 				id: "a006",
-				album: "The Incredible Jazz Guitar of Wes Montgomery",
+				album: "The Incredible Jazz Guitar of",
 				songs: [
 					{ track: "1", title: "Airegin", duration: "4:26" },
 					{ track: "2", title: "D-Natural Blues", duration: "5:24" },

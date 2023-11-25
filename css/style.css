@@ -63,34 +63,31 @@ h1{
 
 .tv-ctn{
 align-items: center;
-justify-content: flex-start;
+justify-content: center;
 flex: 1;
 	display: flex;
-	background-color: #feedb8;
-	height: 656px ;
-	width: 1072px;
+	/* background-color: #feedb8; */
 	margin: 0 auto;
+	flex-direction: column;
 }
 
-.panel-leght{
+.panel{
 background-color:#838f7b ;
 
-	border-top:22px solid #342e13	;
+	/* border-top:22px solid #342e13	;
 	border-bottom:22px solid hsl(94, 7%, 45%);
 	border-right:32px solid #75735a;
-	border-left:32px solid #616b53;
-	height: 90%;
-	width: 75%;
+	border-left:32px solid #616b53; */
+
 	margin:12px;
 
 }
 
-.panel-right{
+/* .panel-right{
 	background-color: #cbbb92;
-	height: 90%;
-	width: 85;
-}
 
+} */
+/*
 .panel-right-up{
 	background-color: #7e7e7d;
 	border-top:10px solid hsl(0, 0%, 26%);
@@ -151,55 +148,94 @@ height: 40%;
 		border-radius: 50%;
 
 	}
-
+ */
 
 .tv-glass{
 border-radius: 85px;
 box-sizing: border-box;
+min-height: 75px;
+min-width: 200px;
+max-width: 1090px;
 background-image:
 linear-gradient(#0004, #0000, #0004);
 box-shadow: 1px 4px 15px 11px black inset;
-height: 100%;
-width:100%;
-border:	30px solid #838f7b	;
+border:	5px solid #838f7b	;
+
+
 }
 
-.tv-glass-header{
-min-height: 65px;
+.tv-header,
+.tv-main{
+display: flex;
+flex-wrap: wrap	;
 }
+
 .tv-glass-header--col1{
 
 }
 .tv-glass-header--col2{
-
+height: 200px;
+width: 200px;
 }
 
-.tv-glass-header{
-	min-height: 65px;
-}
+
 .tv-glass-main{
 	min-height: 65px;
 }
-.tv-glass-footer{
-	min-height: 65px;
-}
+
 
 .tv-glass-footer{
 	align-items: center;
 	justify-content: center;
-	min-height: 65px;
 	display: flex;
 	flex-wrap: wrap;
+	width: 800px;
+	height: 300px;
 }
 
-.cover-mini-album-front{
+.cover-mini-front{
 height: 100px;
 width: 100px;
 box-shadow: 5px 5	px 22px black;
 }
 
-.cover-mini-album-front--gray{
+.cover-mini-front--gray{
 
 	-webkit-filter: grayscale(100%);
 	 filter: grayscale(100%);
 	}
+
+	.tv-glass-main--guitarplayer , .tv-glass-main--album{
+
+color:var(--primary-800);
+font-weight: 700;
+width: 350px;
+text-shadow: 1px 2px 2px hsla(0, 0%, 0%, 0.333);
+text-align: center;
+
+	}
+
+.guitarPlayer ,.album{
+
+}
+
+.mh {min-height: 275px}
+
+.br-n{
+	border-radius: 0;
+}
+
+.pd-2r{
+	padding: 2rem;
+}
+
+/* .minmax-200{
+	min-height: 200px;
+min-width: 200px;
+} */
+
+.fle-aj{
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
