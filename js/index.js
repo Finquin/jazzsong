@@ -10,27 +10,25 @@ const btnDeleteAllFavorite = document.querySelector(".delete");
 
 const favorite = JSON.parse(localStorage.getItem("favorite")) || [];
 
-const svgData = "data:image/svg+xml;utf8,";
-const svgSvg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30	30' fill='none'><path  fill='black' d='";
+const svgData = "data:image/svg+xml;base64,";
 
-const svgImgDelete = "M6 7V18C6 19.1046 6.89543 20 8 20H16C17.1046 20 18 19.1046 18 18V7M6 7H5M6 7H8M18 7H19M18 7H16M10 11V16M14 11V16M8 7V5C8 3.89543 8.89543 3 10 3H14C15.1046 3 16 3.89543 16 5V7M8 7H16'";
-const svgImgHeart = "M22.45,6a5.47,5.47,0,0,1,3.91,1.64,5.7,5.7,0,0,1,0,8L16,26.13,5.64,15.64a5.7,5.7,0,0,1,0-8,5.48,5.48,0,0,1,7.82,0L16,10.24l2.53-2.58A5.44,5.44,0,0,1,22.45,6m0-2a7.47,7.47,0,0,0-5.34,2.24L16,7.36,14.89,6.24a7.49,7.49,0,0,0-10.68,0,7.72,7.72,0,0,0,0,10.82L16,29,27.79,17.06a7.72,7.72,0,0,0,0-10.82A7.49,7.49,0,0,0,22.45,4Z'";
+// eslint-disable-next-line quotes
+const svgImgDelete = `<svg width="25px" height="25px" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 7V18C6 19.1046 6.89543 20 8 20H16C17.1046 20 18 19.1046 18 18V7M6 7H5M6 7H8M18 7H19M18 7H16M10 11V16M14 11V16M8 7V5C8 3.89543 8.89543 3 10 3H14C15.1046 3 16 3.89543 16 5V7M8 7H16" stroke="hsl(0deg 0% 18%)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>`;
 
-// const pp = `<svg width="25px" height="25px" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path
-// d="M6 7V18C6 19.1046 6.89543 20 8 20H16C17.1046 20 18 19.1046 18 18V7M6 7H5M6 7H8M18 7H19M18 7H16M10 11V16M14 11V16M8 7V5C8 3.89543 8.89543 3 10 3H14C15.1046 3 16 3.89543 16 5V7M8 7H16"
-// stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-// </svg>`;
+// eslint-disable-next-line quotes
+const svgImgHeart = `<svg width="25px" height="25px" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.45,6a5.47,5.47,0,0,1,3.91,1.64,5.7,5.7,0,0,1,0,8L16,26.13,5.64,15.64a5.7,5.7,0,0,1,0-8,5.48,5.48,0,0,1,7.82,0L16,10.24l2.53-2.58A5.44,5.44,0,0,1,22.45,6m0-2a7.47,7.47,0,0,0-5.34,2.24L16,7.36,14.89,6.24a7.49,7.49,0,0,0-10.68,0,7.72,7.72,0,0,0,0,10.82L16,29,27.79,17.06a7.72,7.72,0,0,0,0-10.82A7.49,7.49,0,0,0,22.45,4Z" fill="hsl(0deg 0% 18%)"></path></svg>`;
 
-// const base64String = btoa(pp);
+const base64StringDelete = btoa(svgImgDelete);
+const base64StringHeart = btoa(svgImgHeart);
 
-// const dataUrl = `data:image/svg+xml;base64,${base64String}`;
-// const dataUrls = `data:image/svg+xml;base64,${pp}`;
+const dataUrlDelete = `${svgData + base64StringDelete}`;
+const dataUrlHeart = `${svgData + base64StringHeart}`;
 
 // eslint-disable-next-line no-undef
 const data = jazzguitaristas;
 const messagesTostify = ["Agregado", "Eliminado"];
 // eslint-disable-next-line quotes
-const avatarTostify = [`${svgData}${svgSvg}${svgImgHeart}></path></svg>`, `${svgData}${svgSvg}${svgImgDelete}fill='none' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' ></path></svg>`];
+const avatarTostify = [dataUrlHeart, dataUrlDelete];
 
 // eslint-disable-next-line no-undef
 // const data = jazzguitaristas;
