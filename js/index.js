@@ -1,3 +1,7 @@
+// TODO:
+// [ ] Agregarle luz al boton
+//
+// eslint-disable-next-line no-undef
 
 const domTvGlassFooter = document.querySelector(".tv-glass-footer");
 const domAddCoverFront = document.querySelector(".tv-glass-header--col2");
@@ -12,33 +16,32 @@ const favorite = JSON.parse(localStorage.getItem("favorite")) || [];
 
 const svgData = "data:image/svg+xml;base64,";
 
-// eslint-disable-next-line quotes
-const svgImgDelete = `<svg width="25px" height="25px" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 7V18C6 19.1046 6.89543 20 8 20H16C17.1046 20 18 19.1046 18 18V7M6 7H5M6 7H8M18 7H19M18 7H16M10 11V16M14 11V16M8 7V5C8 3.89543 8.89543 3 10 3H14C15.1046 3 16 3.89543 16 5V7M8 7H16" stroke="hsl(0deg 0% 18%)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>`;
+const createSvgUrl = (svgString) => {
+	const base64String = btoa(svgString);
+	return `${svgData}${base64String}`;
+};
 
-// eslint-disable-next-line quotes
-const svgImgHeart = `<svg width="25px" height="25px" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.45,6a5.47,5.47,0,0,1,3.91,1.64,5.7,5.7,0,0,1,0,8L16,26.13,5.64,15.64a5.7,5.7,0,0,1,0-8,5.48,5.48,0,0,1,7.82,0L16,10.24l2.53-2.58A5.44,5.44,0,0,1,22.45,6m0-2a7.47,7.47,0,0,0-5.34,2.24L16,7.36,14.89,6.24a7.49,7.49,0,0,0-10.68,0,7.72,7.72,0,0,0,0,10.82L16,29,27.79,17.06a7.72,7.72,0,0,0,0-10.82A7.49,7.49,0,0,0,22.45,4Z" fill="hsl(0deg 0% 18%)"></path></svg>`;
+const svgImgDelete = `
+  <svg width="25px" height="25px" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6 7V18C6 19.1046 6.89543 20 8 20H16C17.1046 20 18 19.1046 18 18V7M6 7H5M6 7H8M18 7H19M18 7H16M10 11V16M14 11V16M8 7V5C8 3.89543 8.89543 3 10 3H14C15.1046 3 16 3.89543 16 5V7M8 7H16" stroke="hsl(0deg 0% 18%)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+  </svg>
+`;
 
-const base64StringDelete = btoa(svgImgDelete);
-const base64StringHeart = btoa(svgImgHeart);
+const svgImgHeart = `
+  <svg width="25px" height="25px" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M22.45,6a5.47,5.47,0,0,1,3.91,1.64,5.7,5.7,0,0,1,0,8L16,26.13,5.64,15.64a5.7,5.7,0,0,1,0-8,5.48,5.48,0,0,1,7.82,0L16,10.24l2.53-2.58A5.44,5.44,0,0,1,22.45,6m0-2a7.47,7.47,0,0,0-5.34,2.24L16,7.36,14.89,6.24a7.49,7.49,0,0,0-10.68,0,7.72,7.72,0,0,0,0,10.82L16,29,27.79,17.06a7.72,7.72,0,0,0,0-10.82A7.49,7.49,0,0,0,22.45,4Z" fill="hsl(0deg 0% 18%)"></path>
+  </svg>
+`;
 
-const dataUrlDelete = `${svgData + base64StringDelete}`;
-const dataUrlHeart = `${svgData + base64StringHeart}`;
+const dataUrlHeart = createSvgUrl(svgImgHeart);
+const dataUrlDelete = createSvgUrl(svgImgDelete);
 
-// eslint-disable-next-line no-undef
-const data = jazzguitaristas;
 const messagesTostify = ["Agregado", "Eliminado"];
-// eslint-disable-next-line quotes
 const avatarTostify = [dataUrlHeart, dataUrlDelete];
-
-// eslint-disable-next-line no-undef
-// const data = jazzguitaristas;
-// const messagesTostify = ["Agregado", "Eliminado"];
-// // eslint-disable-next-line quotes
-// const avatarTostify = [`${svgData}${svgSvg}<path  d="${svgImgHeart}" stroke="black" fill="black"/></svg>`, `${svgData}${svgSvg}<path  d="${svgImgDelete}" stroke="black" fill="black"/></svg>`];
 
 const optionsToastify = {
 	text: "",
-	duration: 112000,
+	duration: 800,
 	avatar: "",
 	selector: "toastify",
 	newWindow: true,
@@ -46,16 +49,29 @@ const optionsToastify = {
 	gravity: "bottom",
 	position: "right",
 	stopOnFocus: true,
-	callback: function () {
-		// eslint-disable-next-line no-undef
-		Toastify.reposition();
-	},
-
+	progressBar: true,
+	progressBarStyle: { background: "gray", barBackground: "red", height: "5px" },
+	progressBarPosition: "bottom",
 };
 
 // ************************************
 //             Extraer datos
 // ************************************
+
+// [x]
+// ===========================
+// Accedemos a nuestra db
+// ===========================
+const getDataGuitarPlayer = () => {
+	fetch("../js/data.json")
+		.then(response => response.json())
+		.then(data => {
+			albumFrontCoverHtml(data);
+		})
+		.catch(error => {
+			console.error("Error al extraer json:", error);
+		});
+};
 
 // [x]
 // ===========================
@@ -83,7 +99,7 @@ const extractId = (data) => {
 // ===========================
 // Extraer data por el id
 // ===========================
-const extracDataId = (albumIdToFind) => {
+const extracDataId = (albumIdToFind, data) => {
 
 	const albumData = data
 		.flatMap(guitarrista =>
@@ -137,8 +153,8 @@ const albumFrontCoverHtml = (data) => {
 
 	});
 
-	btnImg();
-
+	btnSelectAlbum(data);
+	addfavorite();
 };
 
 // [x]
@@ -174,14 +190,14 @@ const addListSong = (dataId) => {
 
 	domAddSongs.innerHTML = spanHtml.join("");
 
-	favoriteBtn();
+	btnSaveFavorite();
 };
 
 // [ ]
 // ====================================
 // Control de la animamacion del disco
 // ====================================
-const actionPlayDisc = (event) => {
+const actionPlayDisc = (event, data) => {
 	const albumIdToFind = `${event.target.id}`;
 	const domCoverMiniFront = document.querySelectorAll(".cover-mini-front");
 
@@ -193,7 +209,7 @@ const actionPlayDisc = (event) => {
 	// gameDiscHtlm.classList.add("move-disc-open");
 	// playDisc = "start";
 
-	const dataId = extracDataId(albumIdToFind);
+	const dataId = extracDataId(albumIdToFind, data);
 	console.log("==> dataId", dataId);
 	// addCoverBackSelect(dataId)
 	addCoverFrontSelect(dataId);
@@ -215,7 +231,8 @@ const addFavoriteEvent = (event) => {
 	if (findExistFavorite) {
 
 		event.target.classList.remove("icon-favorite--active");
-		favoriteDelete(songTitle);
+		fnFavoriteDelete(songTitle);
+
 		optionsToastify.text = messagesTostify[1];
 		optionsToastify.avatar = avatarTostify[1];
 
@@ -241,11 +258,10 @@ const addFavoriteEvent = (event) => {
 // CLICKS
 //*************/
 
-console.log("==> optionsToastify", optionsToastify);
 // ==================================================
 // Eliminar Favoritos
 // ==================================================
-const favoriteDelete = (songTitle) => {
+const fnFavoriteDelete = (songTitle) => {
 	if (favorite) {
 		const indexToDelete = favorite.findIndex(e => e.title === songTitle);
 
@@ -259,18 +275,18 @@ const favoriteDelete = (songTitle) => {
 // ==================================================
 // Activar click img
 // ==================================================
-const btnImg = () => {
+const btnSelectAlbum = (data) => {
 	const domCoverMiniFront = document.querySelectorAll(".cover-mini-front");
 	console.log("==> domCoverMiniFront", domCoverMiniFront);
 	domCoverMiniFront.forEach((button) => {
-		button.addEventListener("click", (event) => actionPlayDisc(event));
+		button.addEventListener("click", (event) => actionPlayDisc(event, data));
 	});
 };
 
 // ==================================================
 // Guardar favoritos
 // ==================================================
-const favoriteBtn = () => {
+const btnSaveFavorite = () => {
 
 	const iconFavoriteHtml = document.querySelectorAll(".icon-favorite");
 
@@ -299,15 +315,7 @@ const favoriteAllDelete = () => {
 
 };
 
-albumFrontCoverHtml(data);
-addfavorite();
-
 // eslint-disable-next-line no-undef
 btnDeleteAllFavorite.addEventListener("click", () => favoriteAllDelete());
 
-console.log("==> extractAllAlbum", extractAllAlbum(data));
-console.log("==> extractId", extractId(data));
-
-// <path class="icon-favorite icon-favorite--active" song="Blue Bossa" d="M12,22C9.63,20.17,1,13.12,1,7.31C1,4.38,3.47,2,6.5,2c1.9,0,3.64,0.93,4.65,2.48L12,5.78l0.85-1.3 C13.86,2.93,15.6,2,17.5,2C20.53,2,23,4.38,23,7.31C23,13.15,14.38,20.18,12,22z"></path>
-
-// data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='25px' height='25px' viewBox='0 0 1024 1024' fill='none'><path  stroke='black' fill='black' d='M12,22C9.63,20.17,1,13.12,1,7.31C1,4.38,3.47,2,6.5,2c1.9,0,3.64,0.93,4.65,2.48L12,5.78l0.85-1.3 C13.86,2.93,15.6,2,17.5,2C20.53,2,23,4.38,23,7.31C23,13.15,14.38,20.18,12,22z/></svg>
+getDataGuitarPlayer();
