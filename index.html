@@ -6,9 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 	<link rel="stylesheet" href="./css/style.css">
+	<script defer src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	<script defer src="./js/data.js"></script>
 	<script defer src="./js/index.js"></script>
-	<script defer src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 	<title>¿Quien Toca?</title>
 </head>
@@ -17,21 +17,44 @@
 	<header>
 		<nav></nav>
 		<h1>¿Quien toca?</h1>
+		<!-- <div class="box"></div> -->
+		<!-- <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewbox=" 0 0 1024 1024">
+			<path
+				d="M160 256H96a32 32 0 0 1 0-64h256V95.936a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V192h256a32 32 0 1 1 0 64h-64v672a32 32 0 0 1-32 32H192a32 32 0 0 1-32-32V256zm448-64v-64H416v64h192zM224 896h576V256H224v640zm192-128a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32zm192 0a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32z" />
+		</svg> -->
+
+		<!-- <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 30 30">
+			<path
+				d="M160 256H96a32 32 0 0 1 0-64h256V95.936a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V192h256a32 32 0 1 1 0 64h-64v672a32 32 0 0 1-32 32H192a32 32 0 0 1-32-32V256zm448-64v-64H416v64h192zM224 896h576V256H224v640zm192-128a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32zm192 0a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32z">
+			</path>
+		</svg> -->
+
+		<svg width="25px" height="25px" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+			<path
+				d="M6 7V18C6 19.1046 6.89543 20 8 20H16C17.1046 20 18 19.1046 18 18V7M6 7H5M6 7H8M18 7H19M18 7H16M10 11V16M14 11V16M8 7V5C8 3.89543 8.89543 3 10 3H14C15.1046 3 16 3.89543 16 5V7M8 7H16"
+				stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+			</path>
+
+		</svg>
+
 	</header>
 	<main class="site-main">
 		<div class="tv-ctn">
 
+
 			<div class="tv-header minmax-200">
 
-				<div class="tv-glass panel br-n">
-					<div class="tv-glass-header--col1 "></div>
+				<div id="toastify" class="tv-glass panel br-n">
+					<div class="tv-glass-header--col1"></div>
 				</div>
 				<div class="tv-glass panel br-n minw-300">
 					<div class="tv-glass-header--col2"></div>
 				</div>
 
 			</div>
-			<div id="tv-glass-header--col2"></div>
+
+
 			<div class="tv-button-ctn">
 				<button class="button-ctn ">
 					<span class="button-inside white delete"><svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px"
@@ -42,7 +65,7 @@
 				</button>
 
 			</div>
-
+			<div id="divvv"></div>
 			<div class="tv-main">
 				<div class="tv-glass panel fle-aj">
 					<div class="tv-glass-main--guitarplayer"></div>
@@ -60,7 +83,6 @@
 			</div>
 	</main>
 	<footer></footer>
-
 </body>
 
 </html>

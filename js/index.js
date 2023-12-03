@@ -10,36 +10,50 @@ const btnDeleteAllFavorite = document.querySelector(".delete");
 
 const favorite = JSON.parse(localStorage.getItem("favorite")) || [];
 
+const svgData = "data:image/svg+xml;utf8,";
+const svgSvg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30	30' fill='none'><path  fill='black' d='";
+
+const svgImgDelete = "M6 7V18C6 19.1046 6.89543 20 8 20H16C17.1046 20 18 19.1046 18 18V7M6 7H5M6 7H8M18 7H19M18 7H16M10 11V16M14 11V16M8 7V5C8 3.89543 8.89543 3 10 3H14C15.1046 3 16 3.89543 16 5V7M8 7H16'";
+const svgImgHeart = "M22.45,6a5.47,5.47,0,0,1,3.91,1.64,5.7,5.7,0,0,1,0,8L16,26.13,5.64,15.64a5.7,5.7,0,0,1,0-8,5.48,5.48,0,0,1,7.82,0L16,10.24l2.53-2.58A5.44,5.44,0,0,1,22.45,6m0-2a7.47,7.47,0,0,0-5.34,2.24L16,7.36,14.89,6.24a7.49,7.49,0,0,0-10.68,0,7.72,7.72,0,0,0,0,10.82L16,29,27.79,17.06a7.72,7.72,0,0,0,0-10.82A7.49,7.49,0,0,0,22.45,4Z'";
+
+// const pp = `<svg width="25px" height="25px" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path
+// d="M6 7V18C6 19.1046 6.89543 20 8 20H16C17.1046 20 18 19.1046 18 18V7M6 7H5M6 7H8M18 7H19M18 7H16M10 11V16M14 11V16M8 7V5C8 3.89543 8.89543 3 10 3H14C15.1046 3 16 3.89543 16 5V7M8 7H16"
+// stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+// </svg>`;
+
+// const base64String = btoa(pp);
+
+// const dataUrl = `data:image/svg+xml;base64,${base64String}`;
+// const dataUrls = `data:image/svg+xml;base64,${pp}`;
+
 // eslint-disable-next-line no-undef
 const data = jazzguitaristas;
-const messagesTostify = ["Agregado a Favoritos", "Eliminado de Favoritos"];
-const colorTostify = ["linear-gradient(to right, #00b09b, #96c93d)", "linear-gradient(to right, #981B00, #FF6949)"];
+const messagesTostify = ["Agregado", "Eliminado"];
+// eslint-disable-next-line quotes
+const avatarTostify = [`${svgData}${svgSvg}${svgImgHeart}></path></svg>`, `${svgData}${svgSvg}${svgImgDelete}fill='none' stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' ></path></svg>`];
 
-const optionsFavorite = {
-	text: "hola",
-	duration: 3000,
-	selector: "tv-glass-header--col2",
+// eslint-disable-next-line no-undef
+// const data = jazzguitaristas;
+// const messagesTostify = ["Agregado", "Eliminado"];
+// // eslint-disable-next-line quotes
+// const avatarTostify = [`${svgData}${svgSvg}<path  d="${svgImgHeart}" stroke="black" fill="black"/></svg>`, `${svgData}${svgSvg}<path  d="${svgImgDelete}" stroke="black" fill="black"/></svg>`];
+
+const optionsToastify = {
+	text: "",
+	duration: 112000,
+	avatar: "",
+	selector: "toastify",
 	newWindow: true,
-	gravity: "top",
+	className: "toastify-style",
+	gravity: "bottom",
 	position: "right",
 	stopOnFocus: true,
 	callback: function () {
 		// eslint-disable-next-line no-undef
 		Toastify.reposition();
 	},
-	close: true,
-	style: {
-		background: "linear-gradient(to right, #00b09b, #96c93d)",
-	}
+
 };
-
-// const options = {
-// 	text: "Mensaje personalizado",
-// 	selector: "divv",
-// 	duration: 3000,
-// };
-
-// Toastify(options).showToast();
 
 // ************************************
 //             Extraer datos
@@ -153,15 +167,11 @@ const addfavorite = () => {
 const addListSong = (dataId) => {
 	const spanHtml = [];
 
-	console.log("==> dataId", dataId);
-
 	dataId.discography.songs.forEach((song, index) => {
 		const isFavorite = favorite.some(e => e.title === song.title && e.favorite);
 
 		spanHtml.push(`<div class="song-ctn song"><span>0${index}.</span><span class="">${song.title}</span>
-		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 25 25"><path  class="icon-favorite ${isFavorite ? "icon-favorite--active" : ""}"  song="${song.title}" d="M12,22C9.63,20.17,1,13.12,1,7.31C1,4.38,3.47,2,6.5,2c1.9,0,3.64,0.93,4.65,2.48L12,5.78l0.85-1.3
-		C13.86,2.93,15.6,2,17.5,2C20.53,2,23,4.38,23,7.31C23,13.15,14.38,20.18,12,22z" ></path>
-</svg></div>`);
+		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 25 25"><path  class="icon-favorite ${isFavorite ? "icon-favorite--active" : ""}"  song="${song.title}" d="M12,22C9.63,20.17,1,13.12,1,7.31C1,4.38,3.47,2,6.5,2c1.9,0,3.64,0.93,4.65,2.48L12,5.78l0.85-1.3 C13.86,2.93,15.6,2,17.5,2C20.53,2,23,4.38,23,7.31C23,13.15,14.38,20.18,12,22z" ></path></svg></div>`);
 	});
 
 	domAddSongs.innerHTML = spanHtml.join("");
@@ -208,14 +218,13 @@ const addFavoriteEvent = (event) => {
 
 		event.target.classList.remove("icon-favorite--active");
 		favoriteDelete(songTitle);
-		optionsFavorite.text = messagesTostify[1];
-		optionsFavorite.style.background = colorTostify[1];
+		optionsToastify.text = messagesTostify[1];
+		optionsToastify.avatar = avatarTostify[1];
 
 	} else {
 
-		optionsFavorite.text = messagesTostify[0];
-		optionsFavorite.style.background = colorTostify[0];
-		console.log("==> optionsFavorite", optionsFavorite);
+		optionsToastify.text = messagesTostify[0];
+		optionsToastify.avatar = avatarTostify[0];
 		event.target.classList.toggle("icon-favorite--active");
 		favorite.push({ title: songTitle, favorite: true });
 
@@ -223,17 +232,18 @@ const addFavoriteEvent = (event) => {
 
 	addfavorite();
 	localStorage.setItem("favorite", JSON.stringify(favorite));
-	console.log("==> optionsFavorite", optionsFavorite);
+	console.log("==> optionsToastify", optionsToastify);
 
 	// eslint-disable-next-line no-undef
-	Toastify(optionsFavorite).showToast();
+	Toastify(optionsToastify).showToast();
+	// console.log(Toastify(optionsToastify));
 };
 
 //**************/
 // CLICKS
 //*************/
 
-console.log("==> optionsFavorite", optionsFavorite);
+console.log("==> optionsToastify", optionsToastify);
 // ==================================================
 // Eliminar Favoritos
 // ==================================================
@@ -300,3 +310,6 @@ btnDeleteAllFavorite.addEventListener("click", () => favoriteAllDelete());
 console.log("==> extractAllAlbum", extractAllAlbum(data));
 console.log("==> extractId", extractId(data));
 
+// <path class="icon-favorite icon-favorite--active" song="Blue Bossa" d="M12,22C9.63,20.17,1,13.12,1,7.31C1,4.38,3.47,2,6.5,2c1.9,0,3.64,0.93,4.65,2.48L12,5.78l0.85-1.3 C13.86,2.93,15.6,2,17.5,2C20.53,2,23,4.38,23,7.31C23,13.15,14.38,20.18,12,22z"></path>
+
+// data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='25px' height='25px' viewBox='0 0 1024 1024' fill='none'><path  stroke='black' fill='black' d='M12,22C9.63,20.17,1,13.12,1,7.31C1,4.38,3.47,2,6.5,2c1.9,0,3.64,0.93,4.65,2.48L12,5.78l0.85-1.3 C13.86,2.93,15.6,2,17.5,2C20.53,2,23,4.38,23,7.31C23,13.15,14.38,20.18,12,22z/></svg>

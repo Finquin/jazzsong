@@ -298,6 +298,16 @@ linear-gradient(#0004, #0000, #0004);
 	stroke-width: 2;
 }
 
+/*
+.icon-glass{
+	fill:black;
+
+	/* stroke: #000; } */
+
+
+
+
+
 
 .icon-favorite--active{
 	fill: hsl(74deg 11% 30%);
@@ -309,6 +319,10 @@ svg{
 	width: 25px;
 }
 
+.custom-svg {
+	height: 30px;
+	width: 30px;
+}
 
 button{
 	padding: 0;
@@ -364,10 +378,31 @@ button{
 	transform: scale(0.96	);
 }
 
-#tv-glass-header--col2{
-	background-color: #676767;
-	height: 400px;
-	width: 500px;
+#toastify{
+	background-color:#838f7b  ;
+	position: relative;
+
+
+}
+
+.toastify-style{
+	background:hsl(96deg 8% 52% / 0% );
+
+	/* background:
+	url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><path d="M0,0 V50 L50,0 Z" fill="black"/></svg>'); */
+	color: var(--primary-800);
+	position: absolute;
+	text-shadow: 1px 2px 2px hsl(0deg 0% 0% / 33.3%)
+}
+
+.toastify-bottom{
+	bottom: 0;
+}
+
+
+
+.toastify-avatar{
+
 }
 
 .button-inside.dark-gray {
@@ -399,4 +434,6 @@ button{
 	--light-shadow-color: #b8b7b5;
 	--dark-shadow-color: #383838;
 }
+
+
 
