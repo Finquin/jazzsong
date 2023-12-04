@@ -13,6 +13,21 @@ const domAddSongs = document.querySelector(".tv-glass-header--col1");
 const btnDeleteAllFavorite = document.querySelector(".delete");
 
 const favorite = JSON.parse(localStorage.getItem("favorite")) || [];
+const dataJson = [];
+
+// [x]
+// ===========================
+// Accedemos a nuestra db
+// ===========================
+const getDataGuitarPlayer = () => {
+	fetch("../js/data.json")
+		.then(response => response.json())
+		.then(data => dataJson.push(...data))
+		.then(() => albumFrontCoverHtml())
+		.catch(error => {
+			console.error("Error al extraer json:", error);
+		});
+};
 
 const svgData = "data:image/svg+xml;base64,";
 
@@ -60,25 +75,10 @@ const optionsToastify = {
 
 // [x]
 // ===========================
-// Accedemos a nuestra db
-// ===========================
-const getDataGuitarPlayer = () => {
-	fetch("../js/data.json")
-		.then(response => response.json())
-		.then(data => {
-			albumFrontCoverHtml(data);
-		})
-		.catch(error => {
-			console.error("Error al extraer json:", error);
-		});
-};
-
-// [x]
-// ===========================
 // Extraemos todo los albunes
 // ===========================
-const extractAllAlbum = (data) => {
-	return data
+const extractAllAlbum = () => {
+	return dataJson
 		.flatMap(guitarrista =>
 			guitarrista.discography.map(album => album.album)
 		);
@@ -88,20 +88,19 @@ const extractAllAlbum = (data) => {
 // ===========================
 // Extraemos todo los ids
 // ===========================
-const extractId = (data) => {
-	return data
-		.flatMap(guitarrista =>
-			guitarrista.discography.map(discography => discography.id)
-		);
+const extractId = () => {
+	return dataJson.flatMap(guitarrista =>
+		guitarrista.discography.map(discography => discography.id)
+	);
 };
 
 // [x]
 // ===========================
 // Extraer data por el id
 // ===========================
-const extracDataId = (albumIdToFind, data) => {
+const extracDataId = (albumIdToFind) => {
 
-	const albumData = data
+	const albumData = dataJson
 		.flatMap(guitarrista =>
 			guitarrista.discography.map(discography => ({ guitarrista: guitarrista.name, discography, favorite: false }))
 		)
@@ -135,10 +134,10 @@ const addAlbum = (dataId) => {
 // =================================
 // Insertamos en el Html img discos
 // =================================
-const albumFrontCoverHtml = (data) => {
-	const albumNames = extractAllAlbum(data);
-
-	const ids = extractId(data);
+const albumFrontCoverHtml = () => {
+	const albumNames = extractAllAlbum(dataJson);
+	console.log("==> dataJson", dataJson);
+	const ids = extractId();
 
 	albumNames.forEach((albumName, index) => {
 
@@ -153,7 +152,7 @@ const albumFrontCoverHtml = (data) => {
 
 	});
 
-	btnSelectAlbum(data);
+	btnSelectAlbum();
 	addfavorite();
 };
 
@@ -162,6 +161,7 @@ const albumFrontCoverHtml = (data) => {
 // Insertar Cover Front seleccionado
 // ====================================
 const addCoverFrontSelect = (dataId) => {
+	console.log("==> dataId", dataId);
 	const img = `<img class="album-front-select" src="./img/covers/front/${dataId.discography.album.split(" ").join(".").toLowerCase()}_front.png" alt="tapa frontal del disco${dataId.discography.album}"></img>`;
 	domAddCoverFront.innerHTML = img;
 };
@@ -171,21 +171,32 @@ const addCoverFrontSelect = (dataId) => {
 // Insertar Favoritos
 // ==================================================
 const addfavorite = () => {
-	domAddSongFavorite.innerHTML = favorite.map(item => `<span class="favorite">${item.title}</span>`).join("");
+	domAddSongFavorite.innerHTML = favorite.map(item =>
+		`<span id=${item.id} class="favorite">${item.title}</span>`
+	).join("");
+	btnListFavorite();
 };
 
 [];
 // ==================================================
 // Insertamos en el Html los temas
 // ==================================================
-const addListSong = (dataId) => {
+const addListSong = (dataId, albumIdToFind, songTrack) => {
 	const spanHtml = [];
 
 	dataId.discography.songs.forEach((song, index) => {
+		let select = false;
 		const isFavorite = favorite.some(e => e.title === song.title && e.favorite);
 
-		spanHtml.push(`<div class="song-ctn song"><span>0${index}.</span><span class="">${song.title}</span>
-		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 25 25"><path  class="icon-favorite ${isFavorite ? "icon-favorite--active" : ""}"  song="${song.title}" d="M12,22C9.63,20.17,1,13.12,1,7.31C1,4.38,3.47,2,6.5,2c1.9,0,3.64,0.93,4.65,2.48L12,5.78l0.85-1.3 C13.86,2.93,15.6,2,17.5,2C20.53,2,23,4.38,23,7.31C23,13.15,14.38,20.18,12,22z" ></path></svg></div>`);
+		if (isFavorite) {
+			if (songTrack.title === song.title) {
+				select = true;
+			} else {
+				select = false;
+			}
+		}
+
+		spanHtml.push(`<div class="song-ctn song ${select ? "favorite-list-select" : ""} "><span>0${index}.</span><span >${song.title}</span><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 25 25"><path  id=${albumIdToFind} class="icon-favorite ${isFavorite ? "icon-favorite--active" : ""}"  song="${song.title}" d="M12,22C9.63,20.17,1,13.12,1,7.31C1,4.38,3.47,2,6.5,2c1.9,0,3.64,0.93,4.65,2.48L12,5.78l0.85-1.3 C13.86,2.93,15.6,2,17.5,2C20.53,2,23,4.38,23,7.31C23,13.15,14.38,20.18,12,22z" ></path></svg></div>`);
 	});
 
 	domAddSongs.innerHTML = spanHtml.join("");
@@ -197,8 +208,14 @@ const addListSong = (dataId) => {
 // ====================================
 // Control de la animamacion del disco
 // ====================================
-const actionPlayDisc = (event, data) => {
+const actionPlayDisc = (event, selectListFavorite = false) => {
+
+	const songTrack = {};
+
+	if (selectListFavorite) { songTrack.title = event.target.innerHTML; }
+
 	const albumIdToFind = `${event.target.id}`;
+
 	const domCoverMiniFront = document.querySelectorAll(".cover-mini-front");
 
 	const coverImgFrontHtml = document.querySelector(`#${albumIdToFind}`);
@@ -209,12 +226,12 @@ const actionPlayDisc = (event, data) => {
 	// gameDiscHtlm.classList.add("move-disc-open");
 	// playDisc = "start";
 
-	const dataId = extracDataId(albumIdToFind, data);
-	console.log("==> dataId", dataId);
+	const dataId = extracDataId(albumIdToFind);
+
 	// addCoverBackSelect(dataId)
 	addCoverFrontSelect(dataId);
 	// // addCoverInsideSelect(dataId)
-	addListSong(dataId);
+	addListSong(dataId, albumIdToFind, songTrack);
 	addGuitarPlayer(dataId);
 	addAlbum(dataId);
 
@@ -224,7 +241,9 @@ const actionPlayDisc = (event, data) => {
 // Insertamos favoritos
 // ==================================================
 const addFavoriteEvent = (event) => {
+
 	const songTitle = event.target.attributes.song.value;
+	const id = event.target.attributes.id.value;
 
 	const findExistFavorite = favorite.find((e) => e.title === songTitle);
 
@@ -241,13 +260,12 @@ const addFavoriteEvent = (event) => {
 		optionsToastify.text = messagesTostify[0];
 		optionsToastify.avatar = avatarTostify[0];
 		event.target.classList.toggle("icon-favorite--active");
-		favorite.push({ title: songTitle, favorite: true });
+		favorite.push({ title: songTitle, favorite: true, id });
 
 	}
 
 	addfavorite();
 	localStorage.setItem("favorite", JSON.stringify(favorite));
-	console.log("==> optionsToastify", optionsToastify);
 
 	// eslint-disable-next-line no-undef
 	Toastify(optionsToastify).showToast();
@@ -275,12 +293,28 @@ const fnFavoriteDelete = (songTitle) => {
 // ==================================================
 // Activar click img
 // ==================================================
-const btnSelectAlbum = (data) => {
+const btnSelectAlbum = () => {
 	const domCoverMiniFront = document.querySelectorAll(".cover-mini-front");
-	console.log("==> domCoverMiniFront", domCoverMiniFront);
 	domCoverMiniFront.forEach((button) => {
-		button.addEventListener("click", (event) => actionPlayDisc(event, data));
+		button.addEventListener("click", (event) => actionPlayDisc(event));
 	});
+};
+
+// ==================================================
+// Activar click lista Favorite
+// ==================================================
+const btnListFavorite = () => {
+	const domSelectFavorite = document.querySelectorAll(".favorite");
+	domSelectFavorite.forEach((button) => {
+		button.addEventListener("click", (event) => getFavoriteSelect(event));
+	});
+};
+
+const getFavoriteSelect = (event) => {
+
+	const selectListFavorite = true;
+	actionPlayDisc(event, selectListFavorite);
+
 };
 
 // ==================================================
@@ -293,6 +327,7 @@ const btnSaveFavorite = () => {
 	iconFavoriteHtml.forEach(btn => {
 		btn.addEventListener("click", (event) => {
 			if (event.target.classList.contains("icon-favorite")) {
+
 				addFavoriteEvent(event);
 			}
 		});
