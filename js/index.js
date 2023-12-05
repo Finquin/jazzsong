@@ -387,24 +387,20 @@ btnDeleteAllFavorite.addEventListener("click", () => favoriteAllDelete());
 const audio = new Audio();
 const playButton = document.querySelector("#play");
 
-// Agrega el Event Listener fuera de la función btnPlay
 playButton.addEventListener("click", () => {
-	// Verifica si está pausado o reproduciendo y actúa en consecuencia
+
 	if (audio.paused) {
 		audio.play();
 	} else {
 		audio.pause();
 	}
 
-	// Actualiza el estado según sea necesario
 	const state = audio.paused ? "paused" : "playing";
 	console.log("==> Estado actual:", state);
 
-	// Puedes agregar más lógica aquí según tus necesidades
 });
 
 const btnPlay = (audioPath) => {
-	// Configura la nueva fuente solo si es diferente
 	if (audio.src !== audioPath) {
 		audio.src = audioPath;
 	}
