@@ -12,8 +12,11 @@ const domAddSongs = document.querySelector(".tv-glass-header--col1");
 
 const btnDeleteAllFavorite = document.querySelector(".delete");
 const btnDeleteSvgDelete = document.querySelector(".delete svg path");
-// const btnStop = document.querySelector(".stop");
+const btnStop = document.querySelector("#stop");
+const btnPause = document.querySelector("#pause");
+const playButton = document.querySelector("#play");
 
+const audio = new Audio();
 const favorite = JSON.parse(localStorage.getItem("favorite")) || [];
 const dataJson = [];
 
@@ -176,7 +179,7 @@ const addfavorite = () => {
 	btnListFavorite();
 };
 
-[];
+// [x];
 // ==================================================
 // Insertamos en el Html los temas
 // ==================================================
@@ -195,7 +198,7 @@ const addListSong = (dataId, albumIdToFind, songTrack) => {
 			}
 		}
 
-		spanHtml.push(`<div class="song-ctn song ${select ? "favorite-list-select" : ""} "><span>0${index}.</span><span code="${song.code}" class="track" state="succeded">${song.title}</span><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 25 25"><path  id=${albumIdToFind} class="icon-favorite ${isFavorite ? "icon-favorite--active" : ""}"  song="${song.title}" d="M12,22C9.63,20.17,1,13.12,1,7.31C1,4.38,3.47,2,6.5,2c1.9,0,3.64,0.93,4.65,2.48L12,5.78l0.85-1.3 C13.86,2.93,15.6,2,17.5,2C20.53,2,23,4.38,23,7.31C23,13.15,14.38,20.18,12,22z" ></path></svg></div>`);
+		spanHtml.push(`<div class="song-ctn song ${select ? "favorite-list-select" : ""} "><span>0${index}.</span><span code="${song.code}" class="track" >${song.title}</span><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 25 25"><path  id=${albumIdToFind} class="icon-favorite ${isFavorite ? "icon-favorite--active" : ""}"  song="${song.title}" d="M12,22C9.63,20.17,1,13.12,1,7.31C1,4.38,3.47,2,6.5,2c1.9,0,3.64,0.93,4.65,2.48L12,5.78l0.85-1.3 C13.86,2.93,15.6,2,17.5,2C20.53,2,23,4.38,23,7.31C23,13.15,14.38,20.18,12,22z" ></path></svg></div>`);
 	});
 
 	domAddSongs.innerHTML = spanHtml.join("");
@@ -287,20 +290,12 @@ const addListSongClick = () => {
 };
 
 const audioPlayerPlay = (event) => {
-	console.log("==> event.target.atributes", event.target.attributes.code.value);
+
 	const code = event.target.attributes.code.value;
 
 	const title = event.target.innerHTML.split(" ").join("_").toLowerCase();
 	const audioPath = `../track/${title}.mp3`;
 	btnPlay(audioPath, code);
-};
-
-// const audioPlayerStop = () => {
-// 	audio.stop();
-// };
-
-const audioPlayer = () => {
-
 };
 
 // ==================================================
@@ -381,11 +376,8 @@ const favoriteAllDelete = () => {
 btnDeleteAllFavorite.addEventListener("click", () => favoriteAllDelete());
 
 // =================================================
-// Delete todos los favoritos
+//  Reproductor
 // ================================================= =
-
-const audio = new Audio();
-const playButton = document.querySelector("#play");
 
 playButton.addEventListener("click", () => {
 
@@ -395,16 +387,29 @@ playButton.addEventListener("click", () => {
 		audio.pause();
 	}
 
-	const state = audio.paused ? "paused" : "playing";
-	console.log("==> Estado actual:", state);
-
 });
+
+btnStop.addEventListener("click", () => {
+	audio.pause();
+	audio.currentTime = 0;
+});
+
+btnPause.addEventListener("click", () => {
+	if (audio.paused) {
+		audio.play();
+	} else {
+		audio.pause();
+	}
+});
+
+// =================================================
+//  Cargar tema
+// ================================================= =
 
 const btnPlay = (audioPath) => {
 	if (audio.src !== audioPath) {
 		audio.src = audioPath;
 	}
-
 };
 
 getDataGuitarPlayer();
