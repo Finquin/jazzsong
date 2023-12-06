@@ -10,54 +10,63 @@
 						"track": "1",
 						"title": "The Brother (For Jimmie & Stevie)",
 						"duracion": "4:41",
-						"code": "albsk4fwqd"
+						"code": "albsk4fwqd",
+						"isAvailable": false
 					},
 					{
 						"track": "2",
 						"title": "You Cut Me To The Bone",
 						"duracion": "4:47",
-						"code": "anymrwyfwy"
+						"code": "anymrwyfwy",
+						"isAvailable": false
 					},
 					{
 						"track": "3",
 						"title": "I'm A Real Man",
 						"duracion": "5:29",
-						"code": "aasgzxgj3c"
+						"code": "aasgzxgj3c",
+						"isAvailable": false
 					},
 					{
 						"track": "4",
 						"title": "My Love Will Never Die",
 						"duracion": "5:26",
-						"code": "aqt3xe9v7g"
+						"code": "aqt3xe9v7g",
+						"isAvailable": false
 					},
 					{
 						"track": "5",
 						"title": "Step On It",
 						"duracion": "5:56",
-						"code": "a8pna1138o"
+						"code": "a8pna1138o",
+						"isAvailable": false
 					},
 					{
 						"track": "6",
 						"title": "Prison Of Love",
 						"duracion": "4:24",
-						"code": "aj6fvn9c9i"
+						"code": "aj6fvn9c9i",
+						"isAvailable": false
 					},
 					{
 						"track": "7",
 						"title": "Tell Me I'm Your Man",
 						"duracion": "6:12",
-						"code": "ann298u9oq"
+						"code": "ann298u9oq",
+						"isAvailable": false
 					},
 					{
 						"track": "8",
 						"title": "Start It Up",
 						"duracion": "3:45",
-						"code": "al8v663md2"
+						"code": "al8v663md2",
+						"isAvailable": false
 					},
 					{
 						"track": "9",
 						"title": "Life Song (One For Annie)",
-						"code": "aae9kyv0z9"
+						"code": "aae9kyv0z9",
+						"isAvailable": false
 					}
 				]
 			}
@@ -74,31 +83,36 @@
 						"track": "1",
 						"title": "Noshufuru",
 						"duration": "12:29",
-						"code": "a1pc3f601p"
+						"code": "a1pc3f601p",
+						"isAvailable": false
 					},
 					{
 						"track": "2",
 						"title": "You're Welcome To A Prayer",
 						"duration": "8:53",
-						"code": "aao4oaynod"
+						"code": "aao4oaynod",
+						"isAvailable": false
 					},
 					{
 						"track": "3",
 						"title": "The Changing Tides",
 						"duration": "7:33",
-						"code": "axmhm4zju1"
+						"code": "axmhm4zju1",
+						"isAvailable": false
 					},
 					{
 						"track": "4",
 						"title": "Yoshiko",
 						"duration": "11:51",
-						"code": "agkirik0rv"
+						"code": "agkirik0rv",
+						"isAvailable": false
 					},
 					{
 						"track": "5",
 						"title": "This Autumn's Ours",
 						"duration": "10:01",
-						"code": "aln0m43jm1"
+						"code": "aln0m43jm1",
+						"isAvailable": true
 					}
 				]
 			},
@@ -110,37 +124,43 @@
 						"track": 1,
 						"title": "Exit",
 						"duration": "9:23",
-						"code": "aic49stb6k"
+						"code": "aic49stb6k",
+						"isAvailable": false
 					},
 					{
 						"track": 2,
 						"title": "Come Sunday",
 						"duration": "7:30",
-						"code": "az8ov99ctw"
+						"code": "az8ov99ctw",
+						"isAvailable": false
 					},
 					{
 						"track": 3,
 						"title": "Three Base Hit",
 						"duration": "4:30",
-						"code": "ajybj6i96m"
+						"code": "ajybj6i96m",
+						"isAvailable": false
 					},
 					{
 						"track": 4,
 						"title": "Days of Wine and Roses",
 						"duration": "4:47",
-						"code": "ac6l34b3qi"
+						"code": "ac6l34b3qi",
+						"isAvailable": true
 					},
 					{
 						"track": 5,
 						"title": "Blue Bossa",
 						"duration": "4:57",
-						"code": "a5sa91mgw7"
+						"code": "a5sa91mgw7",
+						"isAvailable": true
 					},
 					{
 						"track": 6,
 						"title": "I Remember Clifford",
 						"duration": "7:48",
-						"code": "audtde4umg"
+						"code": "audtde4umg",
+						"isAvailable": false
 					}
 				]
 			}
@@ -157,43 +177,50 @@
 						"track": "1",
 						"title": "My One And Only Love",
 						"duration": "5:47",
-						"code": "a0wngpyseu"
+						"code": "a0wngpyseu",
+						"isAvailable": false
 					},
 					{
 						"track": "2",
 						"title": "God Bless The Child",
 						"duration": "7:21",
-						"code": "amm6ytu339"
+						"code": "amm6ytu339",
+						"isAvailable": false
 					},
 					{
 						"track": "3",
 						"title": "My Funny Valentine",
 						"duration": "9:03",
-						"code": "a75pttu4cf"
+						"code": "a75pttu4cf",
+						"isAvailable": false
 					},
 					{
 						"track": "4",
 						"title": "Little Girl Blue",
 						"duration": "7:12",
-						"code": "aqd9fzv8wl"
+						"code": "aqd9fzv8wl",
+						"isAvailable": false
 					},
 					{
 						"track": "5",
 						"title": "Born To Be Blue",
 						"duration": "4:52",
-						"code": "atmzubux5b"
+						"code": "atmzubux5b",
+						"isAvailable": false
 					},
 					{
 						"track": "6",
 						"title": "Nancy (With The Laughing Face)",
 						"duration": "6:20",
-						"code": "a2smosfoqd"
+						"code": "a2smosfoqd",
+						"isAvailable": false
 					},
 					{
 						"track": "7",
-						"title": "'Round Midnight",
+						"title": "Round Midnight",
 						"duration": "7:15",
-						"code": "a5h8lagfn6"
+						"code": "a5h8lagfn6",
+						"isAvailable": true
 					}
 				]
 			}
@@ -210,31 +237,36 @@
 						"track": "1",
 						"title": "Breezin'",
 						"duration": "5:40",
-						"code": "a0sbtn9qn5"
+						"code": "a0sbtn9qn5",
+						"isAvailable": false
 					},
 					{
 						"track": "2",
 						"title": "This Masquerade",
 						"duration": "8:03",
-						"code": "a9u4xj5t0r"
+						"code": "a9u4xj5t0r",
+						"isAvailable": false
 					},
 					{
 						"track": "3",
 						"title": "Six to Four",
 						"duration": "5:06",
-						"code": "axu0nclaml"
+						"code": "axu0nclaml",
+						"isAvailable": false
 					},
 					{
 						"track": "4",
 						"title": "Affirmation",
 						"duration": "6:58",
-						"code": "arjoi9dmz7"
+						"code": "arjoi9dmz7",
+						"isAvailable": false
 					},
 					{
 						"track": "5",
 						"title": "So This is Love?",
 						"duration": "7:03",
-						"code": "agrlajfzff"
+						"code": "agrlajfzff",
+						"isAvailable": false
 					}
 				]
 			}
@@ -251,31 +283,36 @@
 						"track": "1",
 						"title": "Airegin",
 						"duration": "4:26",
-						"code": "a6izdsvdyu"
+						"code": "a6izdsvdyu",
+						"isAvailable": false
 					},
 					{
 						"track": "2",
 						"title": "D-Natural Blues",
 						"duration": "5:24",
-						"code": "aouez6c8mk"
+						"code": "aouez6c8mk",
+						"isAvailable": false
 					},
 					{
 						"track": "3",
 						"title": "Polka Dots and Moonbeams",
 						"duration": "4:44",
-						"code": "abi7bm4m0i"
+						"code": "abi7bm4m0i",
+						"isAvailable": false
 					},
 					{
 						"track": "4",
 						"title": "Four on Six",
 						"duration": "6:13",
-						"code": "achsr88dy3"
+						"code": "achsr88dy3",
+						"isAvailable": false
 					},
 					{
 						"track": "5",
 						"title": "West Coast Blues",
 						"duration": "7:23",
-						"code": "a3pjw8dsj7"
+						"code": "a3pjw8dsj7",
+						"isAvailable": false
 					}
 				]
 			}
@@ -292,31 +329,36 @@
 						"track": "1",
 						"title": "Gypsy Summer",
 						"duration": "3:59",
-						"code": "avtgu36j6g"
+						"code": "avtgu36j6g",
+						"isAvailable": false
 					},
 					{
 						"track": "2",
 						"title": "Coquette",
 						"duration": "2:51",
-						"code": "acfkbxylhz"
+						"code": "acfkbxylhz",
+						"isAvailable": false
 					},
 					{
 						"track": "3",
 						"title": "I Can't Give You Anything But Love",
 						"duration": "3:32",
-						"code": "ad3rze2iya"
+						"code": "ad3rze2iya",
+						"isAvailable": false
 					},
 					{
 						"track": "4",
 						"title": "Embraceable You",
 						"duration": "4:03",
-						"code": "ac2pxi7nvg"
+						"code": "ac2pxi7nvg",
+						"isAvailable": false
 					},
 					{
 						"track": "5",
 						"title": "I'll See You in My Dreams",
 						"duration": "3:17",
-						"code": "a9h8wgwwnx"
+						"code": "a9h8wgwwnx",
+						"isAvailable": false
 					}
 				]
 			}
@@ -333,85 +375,99 @@
 						"track": "1",
 						"title": "Para Troilo Y Salgán",
 						"duration": "",
-						"code": "a2fm12k4ie"
+						"code": "a2fm12k4ie",
+						"isAvailable": true
 					},
 					{
 						"track": "2",
 						"title": "Aires",
 						"duration": "",
-						"code": "aoyhy4zhhz"
+						"code": "aoyhy4zhhz",
+						"isAvailable": true
 					},
 					{
 						"track": "3",
 						"title": "La Pesada",
 						"duration": "",
-						"code": "at368636n6"
+						"code": "at368636n6",
+						"isAvailable": false
 					},
 					{
 						"track": "4",
 						"title": "Pa' El Tomate",
 						"duration": "",
-						"code": "awbi21kymm"
+						"code": "awbi21kymm",
+						"isAvailable": false
 					},
 					{
 						"track": "5",
 						"title": "Un Ratito Más",
 						"duration": "",
-						"code": "aitrbmwidt"
+						"code": "aitrbmwidt",
+						"isAvailable": false
 					},
 					{
 						"track": "6",
 						"title": "Vals De Lauro",
 						"duration": "",
-						"code": "aitfglics1"
+						"code": "aitfglics1",
+						"isAvailable": false
 					},
 					{
 						"track": "7",
 						"title": "La Bacilona",
 						"duration": "",
-						"code": "a09frspinp"
+						"code": "a09frspinp",
+						"isAvailable": false
 					},
 					{
 						"track": "8",
 						"title": "El Día Antes",
 						"duration": "",
-						"code": "aemdlsscz6"
+						"code": "aemdlsscz6",
+						"isAvailable": false
 					},
 					{
 						"track": "9",
 						"title": "Rumbeando Al Norte",
 						"duration": "",
-						"code": "am16stlxjn"
+						"code": "am16stlxjn",
+						"isAvailable": false
 					},
 					{
 						"track": "10",
 						"title": "Zamba De Mi Esperanza",
 						"duration": "",
-						"code": "a40fx46we4"
+						"code": "a40fx46we4",
+						"isAvailable": false
 					},
 					{
 						"track": "11",
 						"title": "Almíbar",
 						"duration": "",
-						"code": "awjpcslaf2"
+						"code": "awjpcslaf2",
+						"isAvailable": false
 					},
 					{
 						"track": "12",
 						"title": "Aires De Tango",
 						"duration": "",
-						"code": "af594q47v7"
+						"code": "af594q47v7",
+						"isAvailable": false
 					},
 					{
 						"track": "13",
 						"title": "La Milonguera",
 						"duration": "",
-						"code": "aekc3f54xh"
+						"code": "aekc3f54xh",
+						"isAvailable": false
 					},
 					{
 						"track": "14",
 						"title": "Besame Mucho",
 						"duration": "",
-						"code": "a61zcv081z"
+						"code": "a61zcv081z",
+						"isAvailable": false
 					}
 				]
 			}
@@ -428,91 +484,106 @@
 						"track": "01",
 						"title": "Fa Do",
 						"duration": "",
-						"code": "a8pstkvgc2"
+						"code": "a8pstkvgc2",
+						"isAvailable": false
 					},
 					{
 						"track": "02",
 						"title": "Tu Me Haces Falta",
 						"duration": "",
-						"code": "amzav15uif"
+						"code": "amzav15uif",
+						"isAvailable": false
 					},
 					{
 						"track": "03",
 						"title": "Anochece",
 						"duration": "",
-						"code": "aymtel7y7a"
+						"code": "aymtel7y7a",
+						"isAvailable": false
 					},
 					{
 						"track": "04",
 						"title": "Funny blues",
 						"duration": "",
-						"code": "auamkpaa09"
+						"code": "auamkpaa09",
+						"isAvailable": true
 					},
 					{
 						"track": "05",
 						"title": "Domingo Triste",
 						"duration": "",
-						"code": "aemh1teke1"
+						"code": "aemh1teke1",
+						"isAvailable": false
 					},
 					{
 						"track": "06",
 						"title": "Oliverio",
 						"duration": "",
-						"code": "a3y9k36gla"
+						"code": "a3y9k36gla",
+						"isAvailable": false
 					},
 					{
 						"track": "07",
 						"title": "Adios",
 						"duration": "",
-						"code": "azmpl2vl2e"
+						"code": "azmpl2vl2e",
+						"isAvailable": false
 					},
 					{
 						"track": "08",
 						"title": "Pascuali",
 						"duration": "",
-						"code": "ahk2dkbbv0"
+						"code": "ahk2dkbbv0",
+						"isAvailable": false
 					},
 					{
 						"track": "09",
 						"title": "Muchas Cosas",
 						"duration": "",
-						"code": "a9hoevnvwa"
+						"code": "a9hoevnvwa",
+						"isAvailable": false
 					},
 					{
 						"track": "10",
 						"title": "Ahí Viene",
 						"duration": "",
-						"code": "a4zfip9vc1"
+						"code": "a4zfip9vc1",
+						"isAvailable": false
 					},
 					{
 						"track": "11",
 						"title": "Ana",
 						"duration": "",
-						"code": "ai63gabb6y"
+						"code": "ai63gabb6y",
+						"isAvailable": false
 					},
 					{
 						"track": "12",
 						"title": "Para Cheo y Papo Lucas",
 						"duration": "",
-						"code": "ankbutxtqp"
+						"code": "ankbutxtqp",
+						"isAvailable": false
 					},
 					{
 						"track": "13",
 						"title": "Lamentablemente",
 						"duration": "",
-						"code": "af7j2742ie"
+						"code": "af7j2742ie",
+						"isAvailable": false
 					},
 					{
 						"track": "14",
 						"title": "Camina",
 						"duration": "",
-						"code": "a938a12v50"
+						"code": "a938a12v50",
+						"isAvailable": false
 					},
 					{
 						"track": "15",
 						"title": "Alla Va",
 						"duration": "",
-						"code": "ai3skh9qtw"
+						"code": "ai3skh9qtw",
+						"isAvailable": false
 					}
 				]
 			}
@@ -529,79 +600,92 @@
 						"track": "01",
 						"title": "Time After Time",
 						"duration": "4:14",
-						"code": "arqix6dows"
+						"code": "arqix6dows",
+						"isAvailable": true
 					},
 					{
 						"track": "02",
 						"title": "Douce Ambiance",
 						"duration": "4:01",
-						"code": "a4imw7ivi1"
+						"code": "a4imw7ivi1",
+						"isAvailable": false
 					},
 					{
 						"track": "03",
 						"title": "Estate",
 						"duration": "4:10",
-						"code": "a860bj9wmf"
+						"code": "a860bj9wmf",
+						"isAvailable": false
 					},
 					{
 						"track": "04",
 						"title": "Made In France",
 						"duration": "3:18",
-						"code": "apv9ilabqz"
+						"code": "apv9ilabqz",
+						"isAvailable": false
 					},
 					{
 						"track": "05",
 						"title": "La Ballad Irlandaise",
 						"duration": "6:41",
-						"code": "aux04z5sjg"
+						"code": "aux04z5sjg",
+						"isAvailable": false
 					},
 					{
 						"track": "06",
-						"title": "Isn’t She Lovely",
+						"title": "Isnt She Lovely",
 						"duration": "4:02",
-						"code": "av2d835aq6"
+						"code": "av2d835aq6",
+						"isAvailable": true
 					},
 					{
 						"track": "07",
 						"title": "Road Song",
 						"duration": "4:18",
-						"code": "alsbc6foqr"
+						"code": "alsbc6foqr",
+						"isAvailable": false
 					},
 					{
 						"track": "08",
 						"title": "Zurezat",
 						"duration": "4:12",
-						"code": "aak1r4z531"
+						"code": "aak1r4z531",
+						"isAvailable": false
 					},
 					{
 						"track": "09",
 						"title": "Stompin’ At The Savoy",
 						"duration": "5:43",
-						"code": "ay53bmk4ab"
+						"code": "ay53bmk4ab",
+						"isAvailable": false
 					},
 					{
 						"track": "10",
 						"title": "Les Amoureux Des Bancs Pubics",
 						"duration": "4:37",
-						"code": "auol43075v"
+						"code": "auol43075v",
+						"isAvailable": false
 					},
 					{
 						"track": "11",
 						"title": "Blackbird",
 						"duration": "3:22",
-						"code": "a5gqszxopa"
+						"code": "a5gqszxopa",
+						"isAvailable": true
 					},
 					{
 						"track": "12",
 						"title": "Syracuse",
 						"duration": "4:21",
-						"code": "a0rw1yo4nl"
+						"code": "a0rw1yo4nl",
+						"isAvailable": false
 					},
 					{
 						"track": "13",
 						"title": "Looking Up",
 						"duration": "1:58",
-						"code": "aeupn9gg90"
+						"code": "aeupn9gg90",
+						"isAvailable": false
 					}
 				]
 			}
@@ -618,61 +702,71 @@
 						"track": "01",
 						"title": "Yesterday",
 						"duration": "03:a00",
-						"code": "awnn1rpw56"
+						"code": "awnn1rpw56",
+						"isAvailable": false
 					},
 					{
 						"track": "02",
 						"title": "Blue Skies",
 						"duration": "02:50",
-						"code": "afjliytd54"
+						"code": "afjliytd54",
+						"isAvailable": false
 					},
 					{
 						"track": "03",
 						"title": "On a Clear Day",
 						"duration": "04:05",
-						"code": "ajf89oz6st"
+						"code": "ajf89oz6st",
+						"isAvailable": false
 					},
 					{
 						"track": "04",
 						"title": "Volare",
 						"duration": "03:15",
-						"code": "a56wm5mdze"
+						"code": "a56wm5mdze",
+						"isAvailable": false
 					},
 					{
 						"track": "05",
 						"title": "Autumn Leaves",
 						"duration": "04:30",
-						"code": "aco8m37n7g"
+						"code": "aco8m37n7g",
+						"isAvailable": false
 					},
 					{
 						"track": "06",
 						"title": "Moon River",
 						"duration": "03:20",
-						"code": "a58lbxxryz"
+						"code": "a58lbxxryz",
+						"isAvailable": false
 					},
 					{
 						"track": "07",
 						"title": "Body and Soul",
 						"duration": "05:10",
-						"code": "ayk2sm1aav"
+						"code": "ayk2sm1aav",
+						"isAvailable": false
 					},
 					{
 						"track": "08",
 						"title": "My Funny Valentine",
 						"duration": "03:45",
-						"code": "aax03zirov"
+						"code": "aax03zirov",
+						"isAvailable": false
 					},
 					{
 						"track": "09",
 						"title": "Like Someone in Love",
 						"duration": "03:25",
-						"code": "a8pg7omf7l"
+						"code": "a8pg7omf7l",
+						"isAvailable": false
 					},
 					{
 						"track": "10",
 						"title": "Here's That Rainy Day",
 						"duration": "04:15",
-						"code": "aj1vnd1bfu"
+						"code": "aj1vnd1bfu",
+						"isAvailable": false
 					}
 				]
 			}
@@ -689,61 +783,71 @@
 						"track": "01",
 						"title": "Smoking Gun",
 						"duration": "04:09",
-						"code": "aye4n9p2tf"
+						"code": "aye4n9p2tf",
+						"isAvailable": false
 					},
 					{
 						"track": "02",
 						"title": "I Guess I Showed Her",
 						"duration": "03:40",
-						"code": "aftsah3dih"
+						"code": "aftsah3dih",
+						"isAvailable": false
 					},
 					{
 						"track": "03",
 						"title": "Right Next Door (Because Of Me)",
 						"duration": "04:21",
-						"code": "a3hrmcymxs"
+						"code": "a3hrmcymxs",
+						"isAvailable": false
 					},
 					{
 						"track": "04",
-						"title": "Nothin' But A Woman",
+						"title": "Nothin But A Woman",
 						"duration": "03:58",
-						"code": "af3w889l48"
+						"code": "af3w889l48",
+						"isAvailable": true
 					},
 					{
 						"track": "05",
 						"title": "Still Around",
 						"duration": "03:43",
-						"code": "a8whj4i21b"
+						"code": "a8whj4i21b",
+						"isAvailable": true
 					},
 					{
 						"track": "06",
 						"title": "More Than I Can Stand",
 						"duration": "02:58",
-						"code": "a2pigzrinq"
+						"code": "a2pigzrinq",
+						"isAvailable": false
 					},
 					{
 						"track": "07",
 						"title": "Foul Play",
 						"duration": "04:07",
-						"code": "a73a8kvx55"
+						"code": "a73a8kvx55",
+						"isAvailable": false
 					},
 					{
 						"track": "08",
 						"title": "I Wonder",
 						"duration": "03:57",
-						"code": "a7evkx2xo9"
+						"code": "a7evkx2xo9",
+						"isAvailable": false
 					},
 					{
 						"track": "09",
 						"title": "Fantasized",
 						"duration": "04:05",
-						"code": "aktwe9j6eu"
+						"code": "aktwe9j6eu",
+						"isAvailable": false
 					},
 					{
 						"track": "10",
 						"title": "New Blood",
 						"duration": "04:20",
-						"code": "axdvqvvyl2"
+						"code": "axdvqvvyl2",
+						"isAvailable": false
 					}
 				]
 			}

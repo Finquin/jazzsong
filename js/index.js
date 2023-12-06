@@ -12,13 +12,18 @@ const domAddSongs = document.querySelector(".tv-glass-header--col1");
 
 const btnDeleteAllFavorite = document.querySelector(".delete");
 const btnDeleteSvgDelete = document.querySelector(".delete svg path");
+
 const btnStop = document.querySelector("#stop");
 const btnPause = document.querySelector("#pause");
-const playButton = document.querySelector("#play");
+const btnPlay = document.querySelector("#play");
 
 const audio = new Audio();
 const favorite = JSON.parse(localStorage.getItem("favorite")) || [];
 const dataJson = [];
+
+let trackCode;
+let select;
+let htmlSpan;
 
 // [x]
 // ===========================
@@ -138,7 +143,6 @@ const addAlbum = (dataId) => {
 // =================================
 const albumFrontCoverHtml = () => {
 	const albumNames = extractAllAlbum(dataJson);
-	console.log("==> dataJson", dataJson);
 	const ids = extractId();
 
 	albumNames.forEach((albumName, index) => {
@@ -163,7 +167,6 @@ const albumFrontCoverHtml = () => {
 // Insertar Cover Front seleccionado
 // ====================================
 const addCoverFrontSelect = (dataId) => {
-	console.log("==> dataId", dataId);
 	const img = `<img class="album-front-select" src="./img/covers/front/${dataId.discography.album.split(" ").join(".").toLowerCase()}_front.png" alt="tapa frontal del disco${dataId.discography.album}"></img>`;
 	domAddCoverFront.innerHTML = img;
 };
@@ -198,7 +201,7 @@ const addListSong = (dataId, albumIdToFind, songTrack) => {
 			}
 		}
 
-		spanHtml.push(`<div class="song-ctn song ${select ? "favorite-list-select" : ""} "><span>0${index}.</span><span code="${song.code}" class="track" >${song.title}</span><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 25 25"><path  id=${albumIdToFind} class="icon-favorite ${isFavorite ? "icon-favorite--active" : ""}"  song="${song.title}" d="M12,22C9.63,20.17,1,13.12,1,7.31C1,4.38,3.47,2,6.5,2c1.9,0,3.64,0.93,4.65,2.48L12,5.78l0.85-1.3 C13.86,2.93,15.6,2,17.5,2C20.53,2,23,4.38,23,7.31C23,13.15,14.38,20.18,12,22z" ></path></svg></div>`);
+		spanHtml.push(`<div class="song-ctn song ${select ? "favorite-list-select" : ""} "><span class="track-number">0${index}.</span><span code="m${song.code}" class="currentPlay"></span><span class="${song.isAvailable ? "song-isTrueavailable" : "song-isFalseAvailable"}"code="${song.code}" >${song.title}</span><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 25 25"><path  id=${albumIdToFind} class="icon-favorite ${isFavorite ? "icon-favorite--active" : ""}"  song="${song.title}" d="M12,22C9.63,20.17,1,13.12,1,7.31C1,4.38,3.47,2,6.5,2c1.9,0,3.64,0.93,4.65,2.48L12,5.78l0.85-1.3 C13.86,2.93,15.6,2,17.5,2C20.53,2,23,4.38,23,7.31C23,13.15,14.38,20.18,12,22z" ></path></svg></div>`);
 	});
 
 	domAddSongs.innerHTML = spanHtml.join("");
@@ -223,8 +226,8 @@ const actionPlayDisc = (event, selectListFavorite = false) => {
 	const coverImgFrontHtml = document.querySelector(`#${albumIdToFind}`);
 	// gameDisaHtlm.setAttribute("id", "rotating-disc");
 	// gameDiscHtlm.classList.remove("move-disc-close");
-	domCoverMiniFront.forEach(e => e.classList.add("img-gray"));
-	coverImgFrontHtml.classList.remove("img-gray");
+	domCoverMiniFront.forEach(e => e.classList.add("cover-mini-front--gray"));
+	coverImgFrontHtml.classList.remove("cover-mini-front--gray");
 	// gameDiscHtlm.classList.add("move-disc-open");
 	// playDisc = "start";
 
@@ -271,7 +274,6 @@ const addFavoriteEvent = (event) => {
 
 	// eslint-disable-next-line no-undef
 	Toastify(optionsToastify).showToast();
-	// console.log(Toastify(optionsToastify));
 };
 
 //**************/
@@ -282,20 +284,41 @@ const addFavoriteEvent = (event) => {
 // Click track song
 // ==================================================
 const addListSongClick = () => {
-	const domAddTrack = document.querySelectorAll(".track");
+	const domAddTrack = document.querySelectorAll(".song-isTrueavailable");
 	domAddTrack.forEach((button) => {
 		button.addEventListener("click", (event) => audioPlayerPlay(event));
 	});
-
 };
 
 const audioPlayerPlay = (event) => {
 
-	const code = event.target.attributes.code.value;
+	const disableSelectClickTrack = document.querySelector(".select-click-song");
 
-	const title = event.target.innerHTML.split(" ").join("_").toLowerCase();
-	const audioPath = `../track/${title}.mp3`;
-	btnPlay(audioPath, code);
+	if (disableSelectClickTrack) {
+
+		const svgSelect = document.querySelectorAll(".currentPlay");
+
+		svgSelect.forEach(element => {
+			const svgElements = element.querySelectorAll("svg");
+
+			svgElements.forEach(svgElement => {
+				svgElement.remove();
+			});
+		});
+
+		disableSelectClickTrack.classList.remove("select-click-song");
+	}
+
+	const code = event.target.getAttribute("code");
+	const selectClickTrack = document.querySelector(`[code="${code}"]`);
+
+	if (selectClickTrack) {
+		selectClickTrack.classList.add("select-click-song");
+
+		const title = event.target.innerText.split(" ").join("_").toLowerCase();
+		const audioPath = `../track/${title}.mp3`;
+		btnLoadTrack(audioPath, code);
+	}
 };
 
 // ==================================================
@@ -360,6 +383,7 @@ const btnSaveFavorite = () => {
 // Delete todos los favoritos
 // ================================================= =
 const favoriteAllDelete = () => {
+
 	const iconFavoriteHtmlList = document.querySelectorAll(".icon-favorite");
 
 	favorite.length = 0;
@@ -377,27 +401,53 @@ btnDeleteAllFavorite.addEventListener("click", () => favoriteAllDelete());
 
 // =================================================
 //  Reproductor
-// ================================================= =
+// =================================================
 
-playButton.addEventListener("click", () => {
+btnPlay.addEventListener("click", () => {
+
+	const trackSelect = document.querySelector(`[code="m${trackCode}"]`);
 
 	if (audio.paused) {
+
+		htmlSpan = "<svg><use   height='15px' width='15px' fill='black' href='./img/svg/icons.svg#btnPlay'/></svg>";
+
+		trackSelect.innerHTML = htmlSpan;
+
 		audio.play();
 	} else {
+
+		htmlSpan = "<svg><use stroke='black' height='15px' width='15px' fill='black' href='./img/svg/icons.svg#btnPause'/>";
+
+		trackSelect.innerHTML = htmlSpan;
 		audio.pause();
 	}
 
 });
 
 btnStop.addEventListener("click", () => {
+
 	audio.pause();
 	audio.currentTime = 0;
+
+	const trackSelect = document.querySelector(`[code="m${trackCode}"]`);
+	htmlSpan = "<svg><use   height='15px' width='15px' stroke='black' href='./img/svg/icons.svg#btnStop'/></svg>";
+	trackSelect.innerHTML = htmlSpan;
 });
 
 btnPause.addEventListener("click", () => {
 	if (audio.paused) {
+
+		const trackSelect = document.querySelector(`[code="m${trackCode}"]`);
+		htmlSpan = "<svg><use   height='15px' width='15px' stroke='black' href='./img/svg/icons.svg#btnPlay'/></svg>";
+		trackSelect.innerHTML = htmlSpan;
 		audio.play();
+
 	} else {
+
+		const trackSelect = document.querySelector(`[code="m${trackCode}"]`);
+		htmlSpan = "<svg><use   height='15px' width='15px' stroke='black' href='./img/svg/icons.svg#btnPause'/></svg>";
+		trackSelect.innerHTML = htmlSpan;
+
 		audio.pause();
 	}
 });
@@ -406,7 +456,10 @@ btnPause.addEventListener("click", () => {
 //  Cargar tema
 // ================================================= =
 
-const btnPlay = (audioPath) => {
+const btnLoadTrack = (audioPath, code) => {
+
+	trackCode = code;
+
 	if (audio.src !== audioPath) {
 		audio.src = audioPath;
 	}
