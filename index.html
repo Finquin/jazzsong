@@ -22,7 +22,7 @@
 		<div class="tv-ctn">
 			<div class="tv-header minmax-200">
 				<div id="toastify" class="tv-glass panel br-n ">
-					<div class="tv-glass-header--col1 col1 wd-400 " id="scroll-style">
+					<div class="tv-glass-header--col1 col1 wd-400 scroll-style">
 					</div>
 					<div class="tv-glass-footer--col1">
 						<span></span>
@@ -38,24 +38,24 @@
 
 				<button class="button-ctn " id="delete">
 					<span class="button-inside dark-gray delete">
-						<svg xmlns=" http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 1024 1024">
-							<path fill="hsl(0deg 0% 65%)"
-								d="M160 256H96a32 32 0 0 1 0-64h256V95.936a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V192h256a32 32 0 1 1 0 64h-64v672a32 32 0 0 1-32 32H192a32 32 0 0 1-32-32V256zm448-64v-64H416v64h192zM224 896h576V256H224v640zm192-128a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32zm192 0a32 32 0 0 1-32-32V416a32 32 0 0 1 64 0v320a32 32 0 0 1-32 32z" />
+						<svg>
+							<use fill="hsl(0deg 0% 65%)" width="25" height="25" href="./img/svg/icons.svg#icon-delete" />
 						</svg>
 					</span>
 				</button>
 
-				<button class="button-ctn " data-playing="false" role="switch" aria-checked="false" id="play">
+
+				<button class=" button-ctn " data-playing=" false" role="switch" aria-checked="false" id="play">
 					<span class="button-inside dark-gray play">
 						<svg>
-							<use fill="hsl(0deg 0% 65%)" href="./img/svg/icons.svg#btnPlay" />
+							<use width="40px" height="40px" fill="hsl(0deg 0% 65%)" alt="play" href="./img/svg/icons.svg#btnPlay" />
 						</svg></span>
 				</button>
 
 				<button class="button-ctn" data-playing="false" role="switch" aria-checked="false" id="stop">
 					<span class="button-inside dark-gray stop">
 						<svg>
-							<use stroke="hsl(0deg 0% 65%)" href="./img/svg/icons.svg#btnStop" />
+							<use fill="hsl(0deg 0% 65%)" width="20px" height="20px" alt="stop" href="./img/svg/icons.svg#btnStop" />
 						</svg>
 					</span>
 				</button>
@@ -63,17 +63,17 @@
 				<button class="button-ctn" data-playing="false" role="switch" aria-checked="false" id="pause">
 					<span class="button-inside dark-gray pause">
 						<svg>
-							<use fill="hsl(0deg 0% 65%)" href="./img/svg/icons.svg#btnPause" />
+							<use width="30px" height="30px" fill="hsl(0deg 0% 65%)" alt="pause" href="./img/svg/icons.svg#btnPause" />
 						</svg>
 					</span>
 				</button>
 			</div>
 
-			<div class="tv-glass panel">
-				<div class="tv-glass-footer pd-2r"></div>
+			<div class="tv-glass panel panel-gallery 	">
+				<div class="tv-glass-footer pd-2r" class="scroll-style"></div>
 			</div>
-			<div class="tv-glass panel fle-aj">
-				<div class="tv-glass-main--favorite"></div>
+			<div class="tv-glass panel fle-aj ">
+				<div class="tv-glass-main--favorite scroll-style"></div>
 			</div>
 	</main>
 	<footer></footer>

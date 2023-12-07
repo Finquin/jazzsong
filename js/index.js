@@ -1,7 +1,3 @@
-// TODO:
-// [ ] Agregarle luz al boton
-//
-// eslint-disable-next-line no-undef
 
 const domTvGlassFooter = document.querySelector(".tv-glass-footer");
 const domAddCoverFront = document.querySelector(".tv-glass-header--col2");
@@ -11,7 +7,7 @@ const domAddSongFavorite = document.querySelector(".tv-glass-main--favorite");
 const domAddSongs = document.querySelector(".tv-glass-header--col1");
 
 const btnDeleteAllFavorite = document.querySelector(".delete");
-const btnDeleteSvgDelete = document.querySelector(".delete svg path");
+// const btnDeleteSvgDelete = document.querySelector(".delete svg path");
 
 const btnStop = document.querySelector("#stop");
 const btnPause = document.querySelector("#pause");
@@ -20,9 +16,12 @@ const btnPlay = document.querySelector("#play");
 const audio = new Audio();
 const favorite = JSON.parse(localStorage.getItem("favorite")) || [];
 const dataJson = [];
+const songTrack = {};
 
 let trackCode;
-let select;
+// eslint-disable-next-line no-unused-vars
+let songActive = false;
+
 let htmlSpan;
 
 // [x]
@@ -61,12 +60,11 @@ const svgImgHeart = `
 const dataUrlHeart = createSvgUrl(svgImgHeart);
 const dataUrlDelete = createSvgUrl(svgImgDelete);
 
-const messagesTostify = ["Agregado", "Eliminado"];
+const messagesTostify = ["Agregado", "Eliminado", "Favoritos Eliminados", "No hay Favoritos", "Seleccion0 un tema"];
 const avatarTostify = [dataUrlHeart, dataUrlDelete];
-
 const optionsToastify = {
 	text: "",
-	duration: 800,
+	duration: 1000,
 	avatar: "",
 	selector: "toastify",
 	newWindow: true,
@@ -145,6 +143,9 @@ const albumFrontCoverHtml = () => {
 	const albumNames = extractAllAlbum(dataJson);
 	const ids = extractId();
 
+	const div = document.createElement("div");
+	div.classList.add("cover-gallery", "scroll-style");
+
 	albumNames.forEach((albumName, index) => {
 
 		const img = document.createElement("img");
@@ -153,10 +154,11 @@ const albumFrontCoverHtml = () => {
 		img.src = `../img/covers/front/${albumName.toLowerCase().replaceAll(" ", ".")}_front.png`;
 		img.alt = `${albumName}`;
 
+		div.appendChild(img);
 		img.className = "cover-mini-front	cover-mini-front--gray";
-		domTvGlassFooter.appendChild(img);
 
 	});
+	domTvGlassFooter.appendChild(div);
 
 	btnSelectAlbum();
 	addfavorite();
@@ -215,8 +217,6 @@ const addListSong = (dataId, albumIdToFind, songTrack) => {
 // ====================================
 const actionPlayDisc = (event, selectListFavorite = false) => {
 
-	const songTrack = {};
-
 	if (selectListFavorite) { songTrack.title = event.target.innerHTML; }
 
 	const albumIdToFind = `${event.target.id}`;
@@ -258,7 +258,7 @@ const addFavoriteEvent = (event) => {
 		fnFavoriteDelete(songTitle);
 
 		optionsToastify.text = messagesTostify[1];
-		optionsToastify.avatar = avatarTostify[1];
+		optionsToastify.avatar = avatarTostify[0];
 
 	} else {
 
@@ -284,6 +284,7 @@ const addFavoriteEvent = (event) => {
 // Click track song
 // ==================================================
 const addListSongClick = () => {
+
 	const domAddTrack = document.querySelectorAll(".song-isTrueavailable");
 	domAddTrack.forEach((button) => {
 		button.addEventListener("click", (event) => audioPlayerPlay(event));
@@ -314,6 +315,8 @@ const audioPlayerPlay = (event) => {
 
 	if (selectClickTrack) {
 		selectClickTrack.classList.add("select-click-song");
+
+		songActive = true;
 
 		const title = event.target.innerText.split(" ").join("_").toLowerCase();
 		const audioPath = `../track/${title}.mp3`;
@@ -383,17 +386,24 @@ const btnSaveFavorite = () => {
 // Delete todos los favoritos
 // ================================================= =
 const favoriteAllDelete = () => {
+	let message = 3;
+	if (domAddSongFavorite.innerHTML.length) {
 
-	const iconFavoriteHtmlList = document.querySelectorAll(".icon-favorite");
+		const iconFavoriteHtmlList = document.querySelectorAll(".icon-favorite");
 
-	favorite.length = 0;
-	localStorage.clear();
-	domAddSongFavorite.innerHTML = "";
+		favorite.length = 0;
+		localStorage.clear();
+		domAddSongFavorite.innerHTML = "";
 
-	iconFavoriteHtmlList.forEach(iconFavoriteHtml => {
-		iconFavoriteHtml.classList.remove("icon-favorite--active");
-	});
-	btnDeleteSvgDelete.classList.add("delete--active");
+		iconFavoriteHtmlList.forEach(iconFavoriteHtml => {
+			iconFavoriteHtml.classList.remove("icon-favorite--active");
+		});
+		message = 2;
+	}
+	optionsToastify.text = messagesTostify[message];
+	optionsToastify.avatar = avatarTostify[0];
+	// eslint-disable-next-line no-undef
+	Toastify(optionsToastify).showToast();
 };
 
 // eslint-disable-next-line no-undef
@@ -405,53 +415,76 @@ btnDeleteAllFavorite.addEventListener("click", () => favoriteAllDelete());
 
 btnPlay.addEventListener("click", () => {
 
-	const trackSelect = document.querySelector(`[code="m${trackCode}"]`);
+	if (isSelectAlbum()) {
 
-	if (audio.paused) {
+		const trackSelect = document.querySelector(`[code="m${trackCode}"]`);
 
-		htmlSpan = "<svg><use   height='15px' width='15px' fill='black' href='./img/svg/icons.svg#btnPlay'/></svg>";
+		if (audio.paused) {
 
-		trackSelect.innerHTML = htmlSpan;
+			htmlSpan = "<svg><use height='25px' width='25px' fill='black' href='./img/svg/icons.svg#btnPlay'/></svg>";
 
-		audio.play();
-	} else {
+			trackSelect.innerHTML = htmlSpan;
 
-		htmlSpan = "<svg><use stroke='black' height='15px' width='15px' fill='black' href='./img/svg/icons.svg#btnPause'/>";
+			audio.play();
+		} else {
 
-		trackSelect.innerHTML = htmlSpan;
-		audio.pause();
+			htmlSpan = "<svg><use stroke='black' height='25px' width='25px' fill='black' href='./img/svg/icons.svg#btnPause'/>";
+
+			trackSelect.innerHTML = htmlSpan;
+			audio.pause();
+		}
+
 	}
-
 });
 
 btnStop.addEventListener("click", () => {
-
-	audio.pause();
-	audio.currentTime = 0;
-
-	const trackSelect = document.querySelector(`[code="m${trackCode}"]`);
-	htmlSpan = "<svg><use   height='15px' width='15px' stroke='black' href='./img/svg/icons.svg#btnStop'/></svg>";
-	trackSelect.innerHTML = htmlSpan;
-});
-
-btnPause.addEventListener("click", () => {
-	if (audio.paused) {
-
-		const trackSelect = document.querySelector(`[code="m${trackCode}"]`);
-		htmlSpan = "<svg><use   height='15px' width='15px' stroke='black' href='./img/svg/icons.svg#btnPlay'/></svg>";
-		trackSelect.innerHTML = htmlSpan;
-		audio.play();
-
-	} else {
-
-		const trackSelect = document.querySelector(`[code="m${trackCode}"]`);
-		htmlSpan = "<svg><use   height='15px' width='15px' stroke='black' href='./img/svg/icons.svg#btnPause'/></svg>";
-		trackSelect.innerHTML = htmlSpan;
-
+	if (isSelectAlbum()) {
 		audio.pause();
+		audio.currentTime = 0;
+
+		const trackSelect = document.querySelector(`[code="m${trackCode}"]`);
+		htmlSpan = "<svg  ><use  height='15px' width='15px'  href='./img/svg/icons.svg#btnStop'/></svg>";
+		trackSelect.innerHTML = htmlSpan;
 	}
 });
 
+btnPause.addEventListener("click", () => {
+	if (isSelectAlbum()) {
+		if (audio.paused) {
+
+			const trackSelect = document.querySelector(`[code="m${trackCode}"]`);
+			htmlSpan = "<svg><use   height='25px' width='25px' stroke='black' href='./img/svg/icons.svg#btnPlay'/></svg>";
+			trackSelect.innerHTML = htmlSpan;
+			audio.play();
+
+		} else {
+
+			const trackSelect = document.querySelector(`[code="m${trackCode}"]`);
+			htmlSpan = "<svg><use   height='20px' width='20px' stroke='black' href='./img/svg/icons.svg#btnPause'/></svg>";
+			trackSelect.innerHTML = htmlSpan;
+
+			audio.pause();
+		}
+	}
+}
+);
+
+//
+const isSelectAlbum = () => {
+
+	if (!songActive) {
+		optionsToastify.text = messagesTostify[4];
+		optionsToastify.avatar = avatarTostify[0];
+		// eslint-disable-next-line no-undef
+		Toastify(optionsToastify).showToast();
+		return false;
+
+	}
+
+	return true;
+};
+
+// [x]
 // =================================================
 //  Cargar tema
 // ================================================= =

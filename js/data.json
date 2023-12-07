@@ -8,10 +8,10 @@
 				"songs": [
 					{
 						"track": "1",
-						"title": "The Brother (For Jimmie & Stevie)",
+						"title": "The Brother",
 						"duracion": "4:41",
 						"code": "albsk4fwqd",
-						"isAvailable": false
+						"isAvailable": true
 					},
 					{
 						"track": "2",
@@ -46,7 +46,7 @@
 						"title": "Prison Of Love",
 						"duracion": "4:24",
 						"code": "aj6fvn9c9i",
-						"isAvailable": false
+						"isAvailable": true
 					},
 					{
 						"track": "7",
