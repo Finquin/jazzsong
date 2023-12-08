@@ -7,7 +7,6 @@ const domAddSongFavorite = document.querySelector(".tv-glass-main--favorite");
 const domAddSongs = document.querySelector(".tv-glass-header--col1");
 
 const btnDeleteAllFavorite = document.querySelector(".delete");
-// const btnDeleteSvgDelete = document.querySelector(".delete svg path");
 
 const btnStop = document.querySelector("#stop");
 const btnPause = document.querySelector("#pause");
@@ -32,7 +31,10 @@ const getDataGuitarPlayer = () => {
 	fetch("../js/data.json")
 		.then(response => response.json())
 		.then(data => dataJson.push(...data))
-		.then(() => albumFrontCoverHtml())
+		.then(() => {
+			addCoverFrontSelect();
+			albumFrontCoverHtml();
+		})
 		.catch(error => {
 			console.error("Error al extraer json:", error);
 		});
@@ -60,7 +62,7 @@ const svgImgHeart = `
 const dataUrlHeart = createSvgUrl(svgImgHeart);
 const dataUrlDelete = createSvgUrl(svgImgDelete);
 
-const messagesTostify = ["Agregado", "Eliminado", "Favoritos Eliminados", "No hay Favoritos", "Seleccion0 un tema"];
+const messagesTostify = ["Agregado", "Eliminado", "Favoritos Eliminados", "No hay Favoritos", "Seleccione un tema"];
 const avatarTostify = [dataUrlHeart, dataUrlDelete];
 const optionsToastify = {
 	text: "",
@@ -169,6 +171,10 @@ const albumFrontCoverHtml = () => {
 // Insertar Cover Front seleccionado
 // ====================================
 const addCoverFrontSelect = (dataId) => {
+	favoriteListEmpty();
+
+	dataId ? dataId : dataId = extracDataId("a009");
+
 	const img = `<img class="album-front-select" src="./img/covers/front/${dataId.discography.album.split(" ").join(".").toLowerCase()}_front.png" alt="tapa frontal del disco${dataId.discography.album}"></img>`;
 	domAddCoverFront.innerHTML = img;
 };
@@ -211,9 +217,9 @@ const addListSong = (dataId, albumIdToFind, songTrack) => {
 	addListSongClick();
 };
 
-// [ ]
+// [x]
 // ====================================
-// Control de la animamacion del disco
+// Control de la carga del disco
 // ====================================
 const actionPlayDisc = (event, selectListFavorite = false) => {
 
@@ -224,18 +230,13 @@ const actionPlayDisc = (event, selectListFavorite = false) => {
 	const domCoverMiniFront = document.querySelectorAll(".cover-mini-front");
 
 	const coverImgFrontHtml = document.querySelector(`#${albumIdToFind}`);
-	// gameDisaHtlm.setAttribute("id", "rotating-disc");
-	// gameDiscHtlm.classList.remove("move-disc-close");
+
 	domCoverMiniFront.forEach(e => e.classList.add("cover-mini-front--gray"));
 	coverImgFrontHtml.classList.remove("cover-mini-front--gray");
-	// gameDiscHtlm.classList.add("move-disc-open");
-	// playDisc = "start";
 
 	const dataId = extracDataId(albumIdToFind);
 
-	// addCoverBackSelect(dataId)
 	addCoverFrontSelect(dataId);
-	// // addCoverInsideSelect(dataId)
 	addListSong(dataId, albumIdToFind, songTrack);
 	addGuitarPlayer(dataId);
 	addAlbum(dataId);
@@ -268,12 +269,25 @@ const addFavoriteEvent = (event) => {
 		favorite.push({ title: songTitle, favorite: true, id });
 
 	}
+	favoriteListEmpty();
 
 	addfavorite();
 	localStorage.setItem("favorite", JSON.stringify(favorite));
 
 	// eslint-disable-next-line no-undef
 	Toastify(optionsToastify).showToast();
+};
+
+const favoriteListEmpty = () => {
+	if (favorite.length === 0) {
+		favorite.push({ title: "Lista de favoritos", favorite: false, id: "a00000" });
+	} else {
+		if (favorite[0].title === "Lista de favoritos" && favorite.length > 1) {
+			favorite.splice(0, 1);
+		}
+	}
+
+	addfavorite();
 };
 
 //**************/
@@ -330,7 +344,6 @@ const audioPlayerPlay = (event) => {
 const fnFavoriteDelete = (songTitle) => {
 	if (favorite) {
 		const indexToDelete = favorite.findIndex(e => e.title === songTitle);
-
 		if (indexToDelete !== -1) {
 			return favorite.splice(indexToDelete, 1);
 		}
@@ -342,6 +355,7 @@ const fnFavoriteDelete = (songTitle) => {
 // Activar click img
 // ==================================================
 const btnSelectAlbum = () => {
+
 	const domCoverMiniFront = document.querySelectorAll(".cover-mini-front");
 	domCoverMiniFront.forEach((button) => {
 		button.addEventListener("click", (event) => actionPlayDisc(event));
@@ -352,6 +366,7 @@ const btnSelectAlbum = () => {
 // Activar click lista Favorite
 // ==================================================
 const btnListFavorite = () => {
+
 	const domSelectFavorite = document.querySelectorAll(".favorite");
 	domSelectFavorite.forEach((button) => {
 		button.addEventListener("click", (event) => getFavoriteSelect(event));
@@ -380,6 +395,7 @@ const btnSaveFavorite = () => {
 			}
 		});
 	});
+
 };
 
 // =================================================
@@ -387,7 +403,8 @@ const btnSaveFavorite = () => {
 // ================================================= =
 const favoriteAllDelete = () => {
 	let message = 3;
-	if (domAddSongFavorite.innerHTML.length) {
+
+	if (favorite.length > 1) {
 
 		const iconFavoriteHtmlList = document.querySelectorAll(".icon-favorite");
 
@@ -400,17 +417,23 @@ const favoriteAllDelete = () => {
 		});
 		message = 2;
 	}
+
+	favoriteListEmpty();
 	optionsToastify.text = messagesTostify[message];
 	optionsToastify.avatar = avatarTostify[0];
-	// eslint-disable-next-line no-undef
+
 	Toastify(optionsToastify).showToast();
+
 };
 
-// eslint-disable-next-line no-undef
 btnDeleteAllFavorite.addEventListener("click", () => favoriteAllDelete());
 
 // =================================================
 //  Reproductor
+// =================================================
+
+// =================================================
+//  Boton Play
 // =================================================
 
 btnPlay.addEventListener("click", () => {
@@ -418,50 +441,80 @@ btnPlay.addEventListener("click", () => {
 	if (isSelectAlbum()) {
 
 		const trackSelect = document.querySelector(`[code="m${trackCode}"]`);
+		const isSvg = document.querySelectorAll(".currentPlay svg");
+
+		if (!trackSelect) {
+			return;
+		}
 
 		if (audio.paused) {
+			if (isSvg.length) {
+
+				htmlSpan = "<svg><use height='25px' width='25px' fill='black' href='./img/svg/icons.svg#btnPlay'/></svg>";
+
+				trackSelect.innerHTML = htmlSpan;
+			}
 
 			htmlSpan = "<svg><use height='25px' width='25px' fill='black' href='./img/svg/icons.svg#btnPlay'/></svg>";
 
 			trackSelect.innerHTML = htmlSpan;
-
 			audio.play();
 		} else {
+			if (isSvg.length) {
+				htmlSpan = "<svg><use stroke='black' height='25px' width='25px' fill='black' href='./img/svg/icons.svg#btnPause'/>";
 
-			htmlSpan = "<svg><use stroke='black' height='25px' width='25px' fill='black' href='./img/svg/icons.svg#btnPause'/>";
+				trackSelect.innerHTML = htmlSpan;
 
-			trackSelect.innerHTML = htmlSpan;
-			audio.pause();
+				audio.pause();
+			}
 		}
 
 	}
 });
 
+// =================================================
+//  Boton stop
+// =================================================
 btnStop.addEventListener("click", () => {
+	const isSvg = document.querySelectorAll(".currentPlay svg");
 	if (isSelectAlbum()) {
-		audio.pause();
-		audio.currentTime = 0;
+		if (isSvg.length) {
+			const trackSelect = document.querySelector(`[code="m${trackCode}"]`);
+			htmlSpan = "<svg  ><use  height='15px' width='15px'  href='./img/svg/icons.svg#btnStop'/></svg>";
+			trackSelect.innerHTML = htmlSpan;
+		}
 
-		const trackSelect = document.querySelector(`[code="m${trackCode}"]`);
-		htmlSpan = "<svg  ><use  height='15px' width='15px'  href='./img/svg/icons.svg#btnStop'/></svg>";
-		trackSelect.innerHTML = htmlSpan;
+		songActive = false;
+		audio.currentTime = 0;
+		audio.pause();
 	}
 });
 
+// =================================================
+//  Boton Pause
+// =================================================
 btnPause.addEventListener("click", () => {
+
+	const isSvg = document.querySelectorAll(".currentPlay svg");
+
 	if (isSelectAlbum()) {
 		if (audio.paused) {
 
 			const trackSelect = document.querySelector(`[code="m${trackCode}"]`);
-			htmlSpan = "<svg><use   height='25px' width='25px' stroke='black' href='./img/svg/icons.svg#btnPlay'/></svg>";
-			trackSelect.innerHTML = htmlSpan;
+
+			if (isSvg.length) {
+				htmlSpan = "<svg><use   height='25px' width='25px' stroke='black' href='./img/svg/icons.svg#btnPlay'/></svg>";
+				trackSelect.innerHTML = htmlSpan;
+			}
+
 			audio.play();
 
 		} else {
-
-			const trackSelect = document.querySelector(`[code="m${trackCode}"]`);
-			htmlSpan = "<svg><use   height='20px' width='20px' stroke='black' href='./img/svg/icons.svg#btnPause'/></svg>";
-			trackSelect.innerHTML = htmlSpan;
+			if (isSvg.length) {
+				const trackSelect = document.querySelector(`[code="m${trackCode}"]`);
+				htmlSpan = "<svg><use   height='20px' width='20px' stroke='black' href='./img/svg/icons.svg#btnPause'/></svg>";
+				trackSelect.innerHTML = htmlSpan;
+			}
 
 			audio.pause();
 		}

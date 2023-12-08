@@ -22,27 +22,22 @@
 		<div class="tv-ctn">
 			<div class="tv-header minmax-200">
 				<div id="toastify" class="tv-glass panel br-n ">
-					<div class="tv-glass-header--col1 col1 wd-400 scroll-style">
+					<div class="tv-glass-header--col1 col1 noise wd-400 scroll-style">
+						<p class="info">Los temas que se pueden escuchar estan <u>subrayados</u></p>
 					</div>
-					<div class="tv-glass-footer--col1">
+					<div class="tv-glass-footer--col1 ">
 						<span></span>
 						<span class="tv-glass-footer--col1-namePlayer"></span>
 						<span class="tv-glass-footer--col1--album"></span>
 					</div>
 				</div>
-				<div class="tv-glass panel br-n minw-300">
-					<div class="tv-glass-header--col2"></div>
+				<div class="tv-glass panel br-n minw-300 ">
+					<div class="tv-glass-header--col2 ">
+					</div>
 				</div>
 			</div>
 			<div class="tv-button-ctn">
 
-				<button class="button-ctn " id="delete">
-					<span class="button-inside dark-gray delete">
-						<svg>
-							<use fill="hsl(0deg 0% 65%)" width="25" height="25" href="./img/svg/icons.svg#icon-delete" />
-						</svg>
-					</span>
-				</button>
 
 
 				<button class=" button-ctn " data-playing=" false" role="switch" aria-checked="false" id="play">
@@ -69,14 +64,31 @@
 				</button>
 			</div>
 
-			<div class="tv-glass panel panel-gallery 	">
-				<div class="tv-glass-footer pd-2r" class="scroll-style"></div>
-			</div>
-			<div class="tv-glass panel fle-aj ">
-				<div class="tv-glass-main--favorite scroll-style"></div>
+
+			<div class="tv-glass panel  fle-aj ">
+				<div class="ww">
+					<button class="button-ctn " id="delete">
+						<span class="button-inside dark-gray delete">
+							<svg>
+								<use fill="hsl(0deg 0% 65%)" width="25" height="25" href="./img/svg/icons.svg#icon-delete" />
+							</svg>
+						</span>
+					</button>
+				</div>
+				<div class="tv-glass-main--favorite scroll-style">
+					<p>
+						Listado de favoritos
+
+					</p>
+				</div>
 			</div>
 	</main>
-	<footer></footer>
+	<footer>
+		<div class="tv-glass panel panel-gallery 	">
+			<div class="tv-glass-footer pd-2r" class="scroll-style"></div>
+		</div>
+
+	</footer>
 </body>
 
 </html>

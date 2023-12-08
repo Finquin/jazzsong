@@ -109,7 +109,7 @@
 					},
 					{
 						"track": "5",
-						"title": "This Autumn's Ours",
+						"title": "This Autumns Ours",
 						"duration": "10:01",
 						"code": "aln0m43jm1",
 						"isAvailable": true
@@ -245,7 +245,7 @@
 						"title": "This Masquerade",
 						"duration": "8:03",
 						"code": "a9u4xj5t0r",
-						"isAvailable": false
+						"isAvailable": true
 					},
 					{
 						"track": "3",
@@ -259,7 +259,7 @@
 						"title": "Affirmation",
 						"duration": "6:58",
 						"code": "arjoi9dmz7",
-						"isAvailable": false
+						"isAvailable": true
 					},
 					{
 						"track": "5",
@@ -305,14 +305,14 @@
 						"title": "Four on Six",
 						"duration": "6:13",
 						"code": "achsr88dy3",
-						"isAvailable": false
+						"isAvailable": true
 					},
 					{
 						"track": "5",
 						"title": "West Coast Blues",
 						"duration": "7:23",
 						"code": "a3pjw8dsj7",
-						"isAvailable": false
+						"isAvailable": true
 					}
 				]
 			}
@@ -358,6 +358,111 @@
 						"title": "I'll See You in My Dreams",
 						"duration": "3:17",
 						"code": "a9h8wgwwnx",
+						"isAvailable": false
+					},
+					{
+						"track": "6",
+						"title": "Entre Dos Aguas",
+						"duration": "3:52",
+						"code": "a7i2u8a5s4",
+						"isAvailable": true
+					},
+					{
+						"track": "7",
+						"title": "Rio Ancho",
+						"duration": "3:57",
+						"code": "a3r7i1o2an",
+						"isAvailable": false
+					},
+					{
+						"track": "8",
+						"title": "For Sephora",
+						"duration": "4:28",
+						"code": "afs7e9pho4",
+						"isAvailable": false
+					},
+					{
+						"track": "9",
+						"title": "Stella By Starlight",
+						"duration": "3:53",
+						"code": "as2te4lalb",
+						"isAvailable": false
+					},
+					{
+						"track": "10",
+						"title": "Micro",
+						"duration": "2:15",
+						"code": "am2icr4o",
+						"isAvailable": false
+					},
+					{
+						"track": "11",
+						"title": "Gipsy-Summer",
+						"duration": "3:33",
+						"code": "ag8ipssum",
+						"isAvailable": false
+					},
+					{
+						"track": "12",
+						"title": "Insensiblement",
+						"duration": "2:48",
+						"code": "ains2si8bl",
+						"isAvailable": true
+					},
+					{
+						"track": "13",
+						"title": "Spain",
+						"duration": "4:12",
+						"code": "asp2ai7n",
+						"isAvailable": false
+					},
+					{
+						"track": "14",
+						"title": "Armando's Rumba",
+						"duration": "4:00",
+						"code": "aar3ma2du",
+						"isAvailable": false
+					},
+					{
+						"track": "15",
+						"title": "Honeysuckle Rose",
+						"duration": "2:45",
+						"code": "ahr5se2ro",
+						"isAvailable": false
+					},
+					{
+						"track": "16",
+						"title": "Improvisation",
+						"duration": "3:00",
+						"code": "aim1pro1vi",
+						"isAvailable": false
+					},
+					{
+						"track": "17",
+						"title": "Groovin' High",
+						"duration": "2:44",
+						"code": "agr5oo4vi",
+						"isAvailable": false
+					},
+					{
+						"track": "18",
+						"title": "Anouman",
+						"duration": "2:33",
+						"code": "aan4ou3ma",
+						"isAvailable": false
+					},
+					{
+						"track": "19",
+						"title": "Evocacao De Jacob",
+						"duration": "2:43",
+						"code": "aed5jaco",
+						"isAvailable": false
+					},
+					{
+						"track": "20",
+						"title": "Blues For Jessie",
+						"duration": "2:49",
+						"code": "ab5luforj",
 						"isAvailable": false
 					}
 				]
@@ -548,7 +653,7 @@
 						"title": "Ahí Viene",
 						"duration": "",
 						"code": "a4zfip9vc1",
-						"isAvailable": false
+						"isAvailable": true
 					},
 					{
 						"track": "11",
