@@ -158,7 +158,7 @@ const albumFrontCoverHtml = () => {
 		const img = document.createElement("img");
 		img.id = `${ids[index]}`;
 
-		img.src = `../img/covers/front/${albumName.toLowerCase().replaceAll(" ", ".")}_front.png`;
+		img.src = `./img/covers/front/${albumName.toLowerCase().replaceAll(" ", ".")}_front.png`;
 		img.alt = `${albumName}`;
 
 		div.appendChild(img);
@@ -338,7 +338,7 @@ const audioPlayerPlay = (event) => {
 		songActive = true;
 
 		const title = event.target.innerText.split(" ").join("_").toLowerCase();
-		const audioPath = `../track/${title}.mp3`;
+		const audioPath = `./track/${title}.mp3`;
 		btnLoadTrack(audioPath, code);
 	}
 };
