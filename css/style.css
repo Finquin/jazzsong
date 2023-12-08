@@ -483,3 +483,20 @@ footer{
 	flex: 1;
 
 }
+
+
+/* stylelint-disable-next-line media-feature-range-notation */
+@media (max-width: 850px) {
+	.fle-aj{
+		max-width: 400px;
+	}
+
+	#toastify{
+		order: 2;
+	}
+
+	.minw-300 {
+		order: 1;
+	}
+
+}
