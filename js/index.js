@@ -29,7 +29,12 @@ let htmlSpan;
 // ===========================
 const getDataGuitarPlayer = () => {
 	fetch("../js/data.json")
-		.then(response => response.json())
+		.then(response => {
+			if (!response.ok) {
+				throw new Error(`hubo un error : ${response.status}`);
+			}
+			return response.json();
+		})
 		.then(data => dataJson.push(...data))
 		.then(() => {
 			addCoverFrontSelect();
