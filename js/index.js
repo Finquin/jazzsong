@@ -28,7 +28,7 @@ let htmlSpan;
 // Accedemos a nuestra db
 // ===========================
 const getDataGuitarPlayer = () => {
-	fetch("../js/data.json")
+	fetch("https://finquin.github.io/jazzsong/js/data.json")
 		.then(response => {
 			if (!response.ok) {
 				throw new Error(`hubo un error : ${response.status}`);
